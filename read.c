@@ -6,7 +6,7 @@
 /*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 15:20:33 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/08/12 16:28:05 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/08/15 18:52:14 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,16 @@ void	print_prompt(char *text)
 	ft_printf(text);
 }
 
-char	*read_next_command(void)
-{
-	char	*command;
-	char	*line;
-	char	*temp;
-	int		length;
 
-	print_prompt("minishell$ ");
-	command = ft_calloc(1, sizeof(char));
-	while (1)
-	{
-		line = get_next_line(STDIN_FILENO);
-		temp = command;
-		// command = filter(command);
-		command = ft_strjoin(command, line);
-		free(temp);
-		// if (!length || is_command_ended(command))
-		// 	break ;
-		if (!length)
-			break ;
-	}
-	return (command);
+char	*read_next_command(char *buf)
+{
+	// int		buflen;
+	char	*tmp;
+
+		// print_prompt("minishell$ ");
+		// buf = get_next_line(0);
+		buf = readline("minishell$ ");
+	return (buf);
 }
 
 // static char	*filter(char *command)
