@@ -6,7 +6,7 @@
 /*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 14:38:47 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/08/15 19:52:20 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/08/17 15:58:59 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,9 @@ int	main(int argc, char const *argv[], char *const *env)
 	signals_function();
 	while (1)
 	{
-		// cmd = read_next_command(cmd);
 		cmd = read_next_command(cmd);
 		if (!cmd)
 			break ;
-			// exit(EXIT_SUCCESS);
-
 		if (cmd[0] == 0 || ft_strncmp(cmd, "\n", 1) == 0)
 		{
 			free(cmd);
@@ -101,16 +98,11 @@ int	main(int argc, char const *argv[], char *const *env)
 			free(cmd);
 			break ;
 		}
-		write(1, cmd, ft_strlen(cmd));
-		write(1, "\n", 1);
-		// if (cmd == NULL)
-		// {
-		// 	ft_printf("here");
-		// 	free(cmd);
-		// 	break ;
-		// }
-		
-		
+		if (errors_connected_with_qoutes_handler(cmd) == false)
+		{
+			write(1, cmd, ft_strlen(cmd));
+			write(1, "\n", 1);
+		}
 		free(cmd);
 	}
 	// env_variables(env);

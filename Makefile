@@ -6,7 +6,7 @@
 #    By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/12 14:48:24 by tfedoren          #+#    #+#              #
-#    Updated: 2022/08/12 15:44:53 by tfedoren         ###   ########.fr        #
+#    Updated: 2022/08/17 17:19:53 by tfedoren         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,10 @@ NAME = minishell
 LIBFT_PATH	=	Libft
 
 SRC =	main.c \
-		read.c
+		read.c \
+		double_quotes.c \
+		single_quotes.c \
+		quotes_utils.c
 
 
 OBJ = $(SRC:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 15:20:33 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/08/15 18:52:14 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/08/17 17:22:16 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,57 @@
 #include "Libft/libft.h"
 #include <stdlib.h> 
 #include <stdio.h>
+#include <stdbool.h> 
 
 void	print_prompt(char *text)
 {
 	ft_printf(text);
 }
 
+// void init(t_double_quotes *double_quotes_info)
+// {
+// 	double_quotes_info->start_index = 0;
+// 	double_quotes_info->end_index = 0;
+// 	double_quotes_info->number_of_double_qoutes = 0;
+// }
 
 char	*read_next_command(char *buf)
 {
-	// int		buflen;
 	char	*tmp;
 
-		// print_prompt("minishell$ ");
-		// buf = get_next_line(0);
-		buf = readline("minishell$ ");
+	buf = readline("minishell$ ");
 	return (buf);
 }
+
+// bool	check_for_double_quotes(char *cmd)
+// {
+// 	int i;
+// 	int j;
+// 	char *temp;
+// 	char *quote;
+// 	t_double_quotes quotes_info;
+
+// 	quote = "\"";
+// 	i = 0;
+// 	while (cmd[i])
+// 	{
+// 		if (cmd[i] == '\"' && check_for_number_of_double_quotes(cmd) == 1);
+// 		{
+// 			quotes_info.start_index = i;
+// 		}
+// 		else if(cmd[i] == '\"' && check_for_number_of_double_quotes(cmd) == 1)
+// 		{
+// 		}
+// 	}
+// 	j = 0;
+// 	while (cmd[i])
+// 	{
+// 		if (cmd[i] == '\"' )
+// 		{
+// 			write(1, &cmd[i+1], 1);
+// 		}	
+// 	}
+// }
 
 // static char	*filter(char *command)
 // {
@@ -72,25 +106,24 @@ char	*read_next_command(char *buf)
 // 	return (command[itr] != '\\');
 // }
 
-// static int	is_inside_quote(char *command)
-// {
-// 	static char	*quote_chars = "\"\'";
-// 	int			itr;
-// 	char		last_quote;
+static int	is_inside_quote(char *command)
+{
+	static char	*quote_chars = "\"\'";
+	int			itr;
+	char		last_quote;
 
-// 	itr = -1;
-// 	last_quote = '\0';
-// 	while (command[++itr])
-// 	{
-// 		if (ft_strchr(quote_chars, command[itr]))
-// 		{
-// 			if (!last_quote)
-// 				last_quote = command[itr];
-// 			else if (last_quote == command[itr])
-// 				last_quote = '\0';
-// 		}
-// 	}
-// 	return (last_quote);
-// }
-
+	itr = -1;
+	last_quote = '\0';
+	while (command[++itr])
+	{
+		if (ft_strchr(quote_chars, command[itr]))
+		{
+			if (!last_quote)
+				last_quote = command[itr];
+			else if (last_quote == command[itr])
+				last_quote = '\0';
+		}
+	}
+	return (last_quote);
+}
 
