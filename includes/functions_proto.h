@@ -6,11 +6,11 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:46:21 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/23 19:34:37 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/08/25 12:10:37 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
 // checker.c
 

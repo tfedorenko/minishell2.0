@@ -6,7 +6,7 @@
 #    By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/21 17:26:48 by rkultaev          #+#    #+#              #
-#    Updated: 2022/08/23 20:45:23 by rkultaev         ###   ########.fr        #
+#    Updated: 2022/08/25 13:12:18 by rkultaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ RM				=			rm -rf
 CFLAGS			=			-Wall -Werror -Wextra #-I./lib/readline/include
 # LDFLAGS			=			-L./lib/readline/lib -lreadline
 LIBFT			=			./libft_minishell/libft.a
+READLINE_FLAG =  -I $(HOME)/goinfre/.brew/opt/readline/include/ -L $(HOME)/goinfre/.brew/opt/readline/lib/ -lreadline
 
 #	DIRECTORIES
 
@@ -55,7 +56,7 @@ $(BIN)%.o: sources/%.c
 
 $(EXEC) : $(BIN) $(OBJS)
 		@echo $(YELLOW) "Building... $(EXEC)" $(END)
-		@$(CC) $(OBJS) -o $(EXEC) $(LIBFT)
+		@$(CC) $(OBJS) $(LIBFT) $(READLINE_FLAG) -o $(EXEC)
 		@echo $(GREEN) "$(EXEC) was successfully created!\n" $(END)
 
 clean :

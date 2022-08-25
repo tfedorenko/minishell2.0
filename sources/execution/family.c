@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 09:42:53 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/23 22:36:56 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/08/25 13:05:53 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,3 @@ int	parent_process(t_exec *process)
 		close(process->prev->stdfd->std_in);
 	return (SUCCESS);
 }
-

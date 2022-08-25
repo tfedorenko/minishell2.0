@@ -6,14 +6,14 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 16:02:04 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/23 15:27:28 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/08/25 12:04:08 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTION_STRUCT_H
 # define EXECUTION_STRUCT_H
 
-# include <../libft_minishell/src/libft.h>
+# include <libft.h>
 
 typedef struct s_redirect
 {

@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:11:36 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/23 22:37:02 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/08/25 13:05:48 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,3 @@ char	test_getenv(char *name, t_env *env)
 		env = env->next;
 	}
 }
-
