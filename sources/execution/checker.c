@@ -6,68 +6,54 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:24:03 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/23 20:40:05 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/08/31 10:58:41 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	ft_free(char **str)
+char	**path_to_env(t_node *node)
 {
-	int	i;
+	char	**path;
+	t_env	*envp;
 
-	i = 0;
-	while (str[i])
+	path = NULL;
+	envp = node->env;
+	while (envp)
 	{
-		free(str[i]);
-		i++;
+		if (ft_strncmp(envp->key, "PATH", 4) == 0)
+		{
+			path = ft_split((envp->value), ":");
+			return (path);
+		}
+		envp = envp->next;
 	}
-	if (str)
-		free(str);
+	free_matrix(path);
+	return (NULL);
 }
 
-int	find_path_var(char **str)
+char	*set_command_path(char *command, char **paths)
 {
-	int	i;
-
-	i = 0;
-	while (ft_strnstr(str[i], "PATH=", 5) == 0)
-	{
-		i++;
-	}
-	return (i);
-}
-
-char	**path_to_env( char **envp)
-{
-	int		i;
-	char	**path_variations;
-
-	i = 0;
-	i = find_path_var(envp);
-	path_variations = ft_split(envp[i] + 5, ':');
-	return (path_variations);
-}
-
-char	*set_command_path(char *command, char **env)
-{
-	char	**potential_path;
-	char	*slash;
+	char	*tmp_cmd;
 	char	*command_path_with_slash;
 	int		i;
+	int		fd;
 
-	i = 0;
-	potential_path = path_to_env(env);
-	while (potential_path[i])
+	i = -1;
+	while (paths && paths[++i])
 	{
-		slash = ft_strjoin(potential_path[i], "/");
-		command_path_with_slash = ft_strjoin(slash, command);
-		free(slash);
-		if (access(command_path_with_slash, X_OK) == SUCCESS)
+		tmp_cmd = ft_strjoin("/", command);
+		command_path_with_slash = ft_strjoin(paths[i], tmp_cmd);
+		fd = open(command_path_with_slash, O_EXCL);
+		if (fd > 0)
+		{
+			close(fd);
+			free(tmp_cmd);
 			return (command_path_with_slash);
+		}
+		close(fd);
+		free(tmp_cmd);
 		free(command_path_with_slash);
-		i++;
 	}
-	ft_free(potential_path);
 	return (NULL);
 }

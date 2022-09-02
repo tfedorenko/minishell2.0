@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 16:02:04 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/25 12:04:08 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/08/31 19:34:14 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,49 @@
 
 # include <libft.h>
 
-typedef struct s_redirect
-{
-	char	*read;
-	char	*write;
-	char	*overwrite;
-	t_list	*delimiter;
-}	t_redirect;
+// typedef struct s_redirect
+// {
+// 	char	*read;
+// 	char	*write;
+// 	char	*overwrite;
+// 	t_list	*delimiter;
+// }	t_redirect;
 
-typedef struct s_stdfd
-{
-	int	std_in;
-	int	std_out;
-	int	std_err;
-}	t_stdfd;
+// typedef struct s_stdfd
+// {
+// 	int	std_in;
+// 	int	std_out;
+// 	int	std_err;
+// }	t_stdfd;
 
 typedef struct s_exec
 {
-	pid_t			pid;
-	char			*name;
-	char			*path;
-	char			**commands;
-	// t_envp	*envp;
-	t_stdfd			*stdfd;
-	t_redirect		*redirect;
-	struct s_exec	*next;
-	struct s_exec	*prev;
-	char			*envp;	//need to be changed by parser
+	char	**argv;
+	char	*file;
+	char	**env;
 }	t_exec;
+
+typedef struct s_node
+{
+	char			**command;
+	int				type;
+	int				fd[2];
+	t_env			*env;
+	struct s_node	*next;
+	struct s_node	*prev;
+}	t_node;
 
 typedef struct s_env
 {
-	char *key;
-	char *value;
-	char *fullstr;
-	struct s_env *next;
+	char			*key;
+	char			*value;
+	struct s_env	*next;
 }	t_env;
+
+typedef struct s_list
+{
+	char			*value;
+	struct s_list	*next;
+}	t_list;
 
 #endif

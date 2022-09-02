@@ -6,59 +6,91 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:36:51 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/23 22:36:49 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/02 10:30:27 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static int	run_process(t_exec *process)
-{
-	int	pipes[2];
+extern int	glob_status;
 
-	pipes[0] = -1;
-	pipes[1] = -1;
-	if (access(process->path, F_OK))
+pid_t	command(t_node *node)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == ERROR)
+		exit_error("fork error", 1);
+	else if (pid == 0)
 	{
-		if (!process->path)
-			return (error(process, ERR_CMDNOTFOUND));
-		return (error(process, ERR_NOFILE));
+		glob_status = 0;
+		dup2(node->fd[IN], 0);
+		dup2(node->fd[OUT], 1);
+		close_pipes(node);
+		if (is_builtin(node))
+			builtin(MULTI_CMD, node);
+		else
+			execve_action(node);
+		exit(glob_status);
 	}
-	if (access(process->path, X_OK))
-		return (error(process, ERR_PERMDENIED));
-	if (process->next && pipe(pipes))
-		return (error(process, ERR_BROKENPIPE));
-	set_fd(process, pipes);
-	// if (!process->next && !process->prev)
-	// 	return ()
-	process->pid = fork();
-	if (process->pid == 0)
-		child_process(process, pipes);
 	else
-		parent_process(process);
-	return (SUCCESS);
-}
-
-int	launch_process(t_exec *process)
-{
-	int	execution;
-
-	if (!process)
-		return (ERR_NOSUCHPROC);
-	while (process)
 	{
-		execution = run_process(process);
-		if (execution)
-			return (execution);
-		process = process->next;
+		if (node->fd[IN] != 0)
+			my_close(node->fd[IN]);
+		if (node->fd[OUT] != 1)
+			my_close(node->fd[OUT]);
 	}
-	return (SUCCESS);
+	return (pid);
 }
 
-int	start(int test)
+void	define_status(int child)
 {
-	int process = launch_process(test);
-	char *command;
-	command = chdir(command);
-	if (command == ERROR)
+	glob_status = WEXITSTATUS(child);
+	if (WTERMSIG(child) == SIGINT)
+		glob_status = WTERMSIG(child) + 128;
+	if (WTERMSIG(child) == SIGQUIT)
+		glob_status = WTERMSIG(child) + 128;
 }
+
+void	wait_child(int nb_child, int pid)
+{
+	int	i;
+	int	result;
+	int	child;
+
+	i = 0;
+	result = 0;
+	while (i < nb_child)
+	{
+		if (wait(&child) == pid)
+			result = child;
+		i++;
+	}
+	if (nb_child > 0)
+		define_status(result);
+}
+
+void	execute(t_node *node)
+{
+	int		nb_child;
+	pid_t	pid;
+
+	nb_child = 0;
+	if (is_single_command(node) && is_builtin(node))
+	{
+		if (ft_strcmp(node->command[0], "exit"))
+			glob_status = 0;
+		builtin(SINGLE_CMD, node);
+	}
+	else
+	{
+		while (node)
+		{
+			if (node->type == CMD && ++nb_child)
+				pid = command(node);
+			node = node->next;
+		}
+		wait_child(nb_child, pid);
+	}
+}
+

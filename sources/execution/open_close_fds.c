@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   open_close_fds.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 12:46:33 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/23 19:46:40 by rkultaev         ###   ########.fr       */
+/*   Created: 2022/08/31 09:48:35 by rkultaev          #+#    #+#             */
+/*   Updated: 2022/09/02 10:30:56 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
-static void	sole_cd(t_exec *shell, char **env)
+void	my_close(int fd)
 {
-	if (chdir())
+	if (close(fd) == ERROR)
+		exit_error("close failed", 1);
 }
+
