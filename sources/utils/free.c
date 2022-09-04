@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:22:18 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/01 15:04:55 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/03 15:48:13 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,26 @@ void	free_all_env(t_env *head)
 		free(pointer);
 	}
 }
+
+void	free_all_token(t_token *head)
+{
+	t_token	*tmp;
+	t_token	*target;
+
+	if (!head)
+		return ;
+	tmp = head;
+	while (tmp)
+	{
+		target = tmp;
+		if (target->value)
+			free(target->value);
+		tmp = tmp->next;
+		free(target);
+	}
+}
+
+
 
 // void	free_env_all(t_env *head)
 // {

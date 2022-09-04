@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:45:17 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/31 14:55:47 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/02 12:06:12 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,32 +48,6 @@ int	is_single_command(t_node *node)
 	if (!node->next)
 		return (1);
 	return (0);
-}
-
-void	close_pipes(t_node *node)
-{
-	t_node	*tmp;
-
-	if (node->prev && node->prev->type == PIPE)
-	{
-		if (node->prev->fd[IN] > 2)
-			my_close(node->prev->fd[IN]);
-	}
-	tmp = node->next;
-	while (tmp)
-	{
-		if (tmp->type == PIPE)
-		{
-			if (tmp->prev && tmp->prev->type == CMD)
-			{
-				if (tmp->fd[OUT] > 2)
-					my_close(tmp->fd[OUT]);
-				if (tmp->fd[IN] > 2)
-					my_close(tmp->fd[IN]);
-			}
-		}
-	tmp = tmp->next;
-	}
 }
 
 void	my_dup2(int fd1, int fd2)

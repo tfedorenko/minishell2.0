@@ -6,14 +6,15 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 16:02:04 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/31 19:34:14 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/03 20:52:26 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTION_STRUCT_H
 # define EXECUTION_STRUCT_H
 
-# include <libft.h>
+# include "libft.h"
+# include "minishell.h"
 
 // typedef struct s_redirect
 // {
@@ -59,5 +60,13 @@ typedef struct s_list
 	char			*value;
 	struct s_list	*next;
 }	t_list;
+
+typedef struct s_token
+{
+	char			*value;
+	int				type;
+	struct s_token	*next;
+	struct s_token	*prev;
+}	t_token;
 
 #endif

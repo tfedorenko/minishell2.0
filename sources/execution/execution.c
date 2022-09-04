@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:36:51 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/02 10:30:27 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/02 12:57:49 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,27 +70,26 @@ void	wait_child(int nb_child, int pid)
 		define_status(result);
 }
 
-void	execute(t_node *node)
+void	execute(t_node *process)
 {
 	int		nb_child;
 	pid_t	pid;
 
 	nb_child = 0;
-	if (is_single_command(node) && is_builtin(node))
+	if (is_single_command(process) && is_builtin(process))
 	{
-		if (ft_strcmp(node->command[0], "exit"))
+		if (ft_strcmp(process->command[0], "exit"))
 			glob_status = 0;
-		builtin(SINGLE_CMD, node);
+		builtin(SINGLE_CMD, process);
 	}
 	else
 	{
-		while (node)
+		while (process)
 		{
-			if (node->type == CMD && ++nb_child)
-				pid = command(node);
-			node = node->next;
+			if (process->type == CMD && ++nb_child)
+				pid = command(process);
+			process = process->next;
 		}
 		wait_child(nb_child, pid);
 	}
 }
-

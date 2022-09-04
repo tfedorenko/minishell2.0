@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:37:41 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/30 22:36:18 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/02 12:03:41 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	is_exit(char *num)
 		if (!ft_isdigit(num[i]))
 		{
 			print_error(ft_strjoin("exit: ", num), \
-				ft_strdup(": numeric argument require\n"), 255);
+				ft_strdup(": numeric argument is required\n"), 255);
 			exit(255);
 		}
 	}

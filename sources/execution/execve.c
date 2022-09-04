@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 11:00:06 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/02 10:30:33 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/02 12:55:02 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,22 @@ char	**env_init(t_env *envp)
 	return (envp_ptr);
 }
 
-int	args_init(t_node *node, t_exec *arg)
+int	args_init(t_node *node, t_exec *args)
 {
 	char	**path;
 
 	path = path_to_env(node);
 	if (!node->command && !node->command[0])
 		return (0);
-	arg->argv = node->command;
-	arg->file = set_command_path(arg->argv[0], path);
-	if (!ft_strchr(node->command[0], '/') && ! arg->file)
+	args->argv = node->command;
+	args->file = set_command_path(args->argv[0], path);
+	if (!ft_strchr(node->command[0], '/') && !args->file)
 	{
 		print_error(ft_strdup(node->command[0]), \
 					ft_strdup(": command not found\n"), 127);
 		return (0);
 	}
-	arg->env = env_init(node->env);
+	args->env = env_init(node->env);
 	free_matrix(path);
 	return (1);
 }
@@ -69,19 +69,19 @@ void	my_execve(char *file, char **argv, char **envp)
 	if (!argv || !*argv[0] || !file)
 		print_error2(ft_strjoin(argv[0], ": command not found\n"), 127);
 	else if (execve(file, argv, envp) == ERROR)
-		print_error2(ft_strjoin(argvc[0], \
-				": No such  file or directory\n"), 127);
+		print_error2(ft_strjoin(argv[0], \
+				": no such  file or directory\n"), 127);
 }
 
 void	execve_action(t_node *node)
 {
 	t_exec	arg;
 
-	if (!node->command || ! node->command[0])
+	if (!node->command || !node->command[0])
 		return ;
 	if (!args_init(node, &arg))
 		return ;
-	my_execve(arg.file, arg.argv, arg.envp);
+	my_execve(arg.file, arg.argv, arg.env);
 	free_matrix(arg.env);
 }
 

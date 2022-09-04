@@ -6,39 +6,45 @@
 #    By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/29 14:27:16 by rkultaev          #+#    #+#              #
-#    Updated: 2022/08/21 21:02:47 by rkultaev         ###   ########.fr        #
+#    Updated: 2022/09/04 12:22:36 by rkultaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #	FILES
 
-SRCS			=			$(wildcard src/*.c)
-OBJS			=			$(SRCS:src/%.c=bin/%.o)
+# SRCS			=			$(wildcard src/*.c)
+# SRC_DIR			=			src/
+SRC				=			src/ft_bzero.c src/ft_isalnum.c	src/ft_isalpha.c src/ft_isascii.c src/ft_isdigit.c src/ft_isprint.c src/ft_memcpy.c	\
+							src/ft_memmove.c	src/ft_memset.c \
+							src/ft_strchr.c src/ft_strlcat.c src/ft_strlcpy.c src/ft_strlen.c src/ft_strrchr.c src/ft_tolower.c src/ft_toupper.c \
+							src/ft_strncmp.c src/ft_memchr.c src/ft_memcmp.c src/ft_strnstr.c src/ft_atoi.c src/ft_calloc.c \
+							src/ft_strdup.c src/ft_substr.c src/ft_strjoin.c src/ft_strtrim.c src/ft_split.c src/ft_putchar_fd.c \
+							src/ft_putstr_fd.c src/ft_itoa.c src/ft_strmapi.c src/ft_striteri.c src/ft_putendl_fd.c \
+							src/ft_putnbr_fd.c
+
+SRCS			=			$(addprefix $(SRC_DIR), $(SRC))
+
+OBJS			=			$(SRC:src/%.c=bin/%.o)
 
 #	COMMANDS AND FLAGS
 
 EXEC			=			libft.a
 CC				=			gcc
 RM				=			rm -rf
-GCC				=			-Wall -Werror -Wextra
-LIB				=			gnl/get_next_line.a
+CFLAGS			=			-Wall -Werror -Wextra
+# LIB				=			gnl/get_next_line.a
 
 #	DIRECTORIES
 
 BIN				=			bin/
 INCLUDES		=			./libft.h
 
-
 #	RULES
 
-all : $(LIB) $(BIN) $(EXEC)
-
-$(LIB) :
-		@make -C ./gnl
+all : $(BIN) $(EXEC)
 
 $(EXEC) : $(OBJS)
 		@echo $(YELLOW) "Copying and archiving object files...$(EXEC)" $(END)
-		@cp $(LIB) ./$(EXEC)
 		@ar rc $(EXEC) $(OBJS)
 		@ranlib $(EXEC)
 		@echo $(GREEN) "$(EXEC) was created successfully!\n" $(END)

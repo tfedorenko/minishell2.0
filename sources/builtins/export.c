@@ -6,13 +6,13 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:59:51 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/30 20:58:57 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/02 19:45:39 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_env	*set_env(t_env *env, char *key, char *value)
+t_env	*set_builtin_env(t_env *env, char *key, char *value)
 {
 	env = update_env(env, key, value);
 	ft_free(key);

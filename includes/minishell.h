@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:25:24 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/02 10:27:38 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/03 20:40:51 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@
 # include <readline/history.h>
 # include <stdbool.h>
 # include <errno.h>
+# include <sys/ioctl.h>
+# include <termios.h>
 // # include </Users/tfedoren/goinfre/.brew/opt/readline/include/readline/readline.h>
 // # include </Users/tfedoren/goinfre/.brew/opt/readline/include/readline/history.h>
 
 # include "libft.h"
-# include <ft_printf.h>
-# include <get_next_line.h>
+// # include "ft_printf.h"
+// # include <get_next_line.h>
 # include "macros_and_enums.h"
 # include "functions_proto.h"
 # include "execution_struct.h"

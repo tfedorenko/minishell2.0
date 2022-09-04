@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:46:21 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/01 16:47:05 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/03 15:49:56 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ void	close_pipes(t_node *node);
 void	builtin(int single_command, t_node *node);
 int	is_builtin(t_node *node);
 int	is_single_command(t_node *node);
+
+//execution
+pid_t	command(t_node *node);
+void	define_status(int child);
+void	wait_child(int nb_child, int pid);
+void	execute(t_node *process);
 
 //execve.c
 void	my_execve(char *file, char **argv, char **envp);
@@ -81,7 +87,7 @@ t_env	*sort_env(t_env *env);
 t_env	*dupl_env(t_env *env);
 t_env	*dupl_envp(t_env *envp);
 void	prompt_sorted_env(t_env *envp);
-t_env	*set_env(t_env *env, char *key, char *value);
+t_env	*set_builtin_env(t_env *env, char *key, char *value);
 char	*set_value(char *str, int delim);
 int	find_delim(char *str, int delim);
 void	update_envp(t_node *node);
@@ -126,6 +132,77 @@ void	free_matrix(char **str);
 void	free_env(t_env *env);
 void	free_all_nodes(t_node *head);
 void	free_all_env(t_env *head);
+void	free_all_token(t_token *head);
 
 //exit.c
 void	eof_exit(t_env *envp);
+
+
+//signal
+//signal.c
+void	sigquit(int signal);
+void	child_sig_int(int signal);
+void sig_int(int signal);
+void	heredoc_sig_int(int signal);
+
+//parse_utils
+//parse_check.c
+void	check_quote(char target, int *sq, int *dq);
+int	check_duple_sep(char *token, int pos);
+//parse_error.c
+t_token *open_quote_err(t_token *head);
+int print_syntax_error(t_token **token, const char *msg);
+int error_handler(t_token **token, t_token **tmp);
+//search_env.c
+char	*search_env(t_env *env, char *target);
+
+//token
+//exec_unit.c
+t_node	*new_node(int type, int size, t_env *envp);
+t_node	*add_node(t_node *head, t_token *target, int iter, t_env *envp);
+t_node	*add_node_by_type(t_node *head,
+		t_token **token, t_token **tmp, t_env *envp);
+t_node	*get_exec_unit(t_node *head, t_token **token, 
+		t_token **tmp, t_env *envp);
+t_node	*exec_unit(t_token **token, t_env *envp);
+//expand.c
+char	*ft_strjoin_free_s1(char *s1, char *s2);
+static void	set_expanded_value(t_token *token,
+		char *replaced, int start, int *index);
+void	expand_home_var(t_token *tmp, t_env *env, int *index);
+void	expand_env_var(t_token *tmp, t_env *env, int *index);
+t_token	*expand(t_token *token, t_env *env);
+//reorder_token.c
+static void	connect_cmd(t_token **head, t_token *cmd,
+		t_token *arg_start, t_token *redir);
+static t_token	*do_reorder_token(t_token **head, t_token *file,
+		t_token *redir, t_token *cmd);
+t_token	*reorder_token(t_token *token);
+//split_by_sep.c
+static t_token	*join_list_center(t_token *pos,
+		int sep_size, int *index, int size);
+static t_token	*join_list_back(t_token *pos,
+		int sep_size, int *index, int size);
+static t_token	*do_split_by_seps(t_token *pos,
+		int sep_size, int *index, int size);
+static t_token	*split_target_token(t_token *token,
+		t_token *tmp, int *squote, int *dquote);
+t_token	*split_by_sep(t_token *token);
+//token.c
+t_token	*add_token(t_token *head, char *value);
+void	add_redir_type(t_token *token);
+t_token	*add_type(t_token *token);
+t_node	*add_cmd_arr(t_node *new, t_token *target, int iter);
+//trim.c
+t_token	*do_trim_space(t_token *head,
+		char *line, int *start, int i);
+t_token	*trim_space(char *line);
+char	*inside_quote(char *value, int start, int *mid);
+void	do_trim_quote(t_token *tmp);
+t_token	*trim_quote(t_token *token);
+
+//utils.c
+//define_env_category.c
+int	is_general_env_var(char *target, int squote);
+int	is_home_env_var(char *target, int squote);
+
