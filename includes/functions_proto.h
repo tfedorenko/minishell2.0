@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:46:21 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/03 15:49:56 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:02:02 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,20 @@ void	execute(t_node *process);
 
 //execve.c
 void	my_execve(char *file, char **argv, char **envp);
-void	execve_action(t_node *node);
+void	launch_execve(t_node *node);
+int	args_init(t_node *node, t_exec *args);
+char	**env_init_arr(t_env *envp);
+int	env_counter_arr(t_env *envp);
 
 // redirects.c
 int	redirect(t_exec *process);
+
+//fd.c
+t_node	*set_command_pipe(t_node *prev, t_node *tmp, t_node *command);
+void	set_command_output(t_node *tmp, t_node *command);
+t_node	*init_command(t_node *prev, t_node *command);
+void	define_command_fd(t_node **command, t_node *prev, t_node *tmp);
+t_node	*launch_fd(t_node *node);
 
 //heredoc_handle_tmpfiles.c
 t_list	*add_files(t_list *head, char *file_name);
@@ -48,12 +58,6 @@ char	*fetch_heredoc_str(char *heredoc_str, char *read_line);
 int	fetch_heredoc_read_end(int temp_fd, char *heredoc_str);
 int	fetch_heredoc_fd(t_node *node);
 
-//fd.c
-t_node	*set_command_pipe(t_node *prev, t_node *tmp, t_node *command);
-void	set_command_output(t_node *tmp, t_node *command);
-t_node	*init_command(t_node *prev, t_node *command);
-void	define_command_fd(t_node **command, t_node *prev, t_node *tmp);
-t_node	*get_fd(t_node *node);
 
 
 //init_fd.c
@@ -100,8 +104,8 @@ void	give_all_env(t_env *env, int prefix);
 void	env(t_env *env);
 
 //
-t_env	*set_env(char **env, int i);
-t_env	*init_env(char **env);
+t_env	*set_init_env(char **env, int i);
+t_env	*env_init(char **env);
 
 //exit
 void	is_exit(char *num);
@@ -158,41 +162,37 @@ char	*search_env(t_env *env, char *target);
 
 //token
 //exec_unit.c
-t_node	*new_node(int type, int size, t_env *envp);
-t_node	*add_node(t_node *head, t_token *target, int iter, t_env *envp);
+t_node	*init_node(int type, int size, t_env *envp);
+t_node	*add_node_arr(t_node *head, t_token *target, int iter, t_env *envp);
 t_node	*add_node_by_type(t_node *head,
 		t_token **token, t_token **tmp, t_env *envp);
 t_node	*get_exec_unit(t_node *head, t_token **token, 
 		t_token **tmp, t_env *envp);
-t_node	*exec_unit(t_token **token, t_env *envp);
+t_node	*exec_handle_node(t_token **token, t_env *envp);
 //expand.c
 char	*ft_strjoin_free_s1(char *s1, char *s2);
-static void	set_expanded_value(t_token *token,
-		char *replaced, int start, int *index);
+// static void	set_expanded_value(t_token *token,
+// 		char *replaced, int start, int *index);
 void	expand_home_var(t_token *tmp, t_env *env, int *index);
 void	expand_env_var(t_token *tmp, t_env *env, int *index);
 t_token	*expand(t_token *token, t_env *env);
 //reorder_token.c
-static void	connect_cmd(t_token **head, t_token *cmd,
-		t_token *arg_start, t_token *redir);
-static t_token	*do_reorder_token(t_token **head, t_token *file,
-		t_token *redir, t_token *cmd);
+// static void	connect_cmd(t_token **head, t_token *cmd,
+// 		t_token *arg_start, t_token *redir);
+// static t_token	*do_reorder_token(t_token **head, t_token *file,
+// 		t_token *redir, t_token *cmd);
 t_token	*reorder_token(t_token *token);
 //split_by_sep.c
-static t_token	*join_list_center(t_token *pos,
-		int sep_size, int *index, int size);
-static t_token	*join_list_back(t_token *pos,
-		int sep_size, int *index, int size);
-static t_token	*do_split_by_seps(t_token *pos,
-		int sep_size, int *index, int size);
-static t_token	*split_target_token(t_token *token,
-		t_token *tmp, int *squote, int *dquote);
+// static t_token	*join_list_center(t_token *pos, int sep_size, int *index, int size);
+// static t_token	*join_list_back(t_token *pos, int sep_size, int *index, int size);
+// static t_token	*do_split_by_seps(t_token *pos, int sep_size, int *index, int size);
+// static t_token	*split_target_token(t_token *token, t_token *tmp, int *squote, int *dquote);
 t_token	*split_by_sep(t_token *token);
 //token.c
 t_token	*add_token(t_token *head, char *value);
 void	add_redir_type(t_token *token);
 t_token	*add_type(t_token *token);
-t_node	*add_cmd_arr(t_node *new, t_token *target, int iter);
+t_node	*add_command_arr(t_node *new, t_token *target, int iter);
 //trim.c
 t_token	*do_trim_space(t_token *head,
 		char *line, int *start, int i);
@@ -205,4 +205,12 @@ t_token	*trim_quote(t_token *token);
 //define_env_category.c
 int	is_general_env_var(char *target, int squote);
 int	is_home_env_var(char *target, int squote);
+//free_token.c
+void	free_token_value(t_token *token);
+t_token	*do_ft_dellist(t_token **head, t_token *tmp);
+t_token	*ft_dellist(t_token *head, char *target);
 
+//main.c
+int	proper_order(t_token *token);
+t_token	*do_parse(char *str, t_env *env);
+void	minishell(t_env *envp);

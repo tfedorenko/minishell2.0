@@ -6,11 +6,11 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:57:23 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/29 14:58:13 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/04 13:12:25 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 void	pwd(void)
 {

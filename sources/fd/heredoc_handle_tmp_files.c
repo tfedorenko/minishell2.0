@@ -6,11 +6,11 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 16:08:17 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/31 19:36:26 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/05 15:29:44 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 extern int glob_status;
 
@@ -64,6 +64,7 @@ t_list	*temp_files(char *file_name, int command)
 {
 	static t_list	*head;
 
+	
 	if (command == GET)
 		return (get_files(head));
 	else if (command == ADD)

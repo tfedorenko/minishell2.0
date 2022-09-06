@@ -6,11 +6,11 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:24:03 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/31 10:58:41 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/04 13:38:37 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "../../includes/minishell.h"
 
 char	**path_to_env(t_node *node)
 {
@@ -23,7 +23,7 @@ char	**path_to_env(t_node *node)
 	{
 		if (ft_strncmp(envp->key, "PATH", 4) == 0)
 		{
-			path = ft_split((envp->value), ":");
+			path = ft_split((envp->value), ':');
 			return (path);
 		}
 		envp = envp->next;

@@ -6,7 +6,7 @@
 #    By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/29 14:27:16 by rkultaev          #+#    #+#              #
-#    Updated: 2022/09/04 12:22:36 by rkultaev         ###   ########.fr        #
+#    Updated: 2022/09/05 12:11:09 by rkultaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC				=			src/ft_bzero.c src/ft_isalnum.c	src/ft_isalpha.c src/ft_isascii.c src
 							src/ft_strncmp.c src/ft_memchr.c src/ft_memcmp.c src/ft_strnstr.c src/ft_atoi.c src/ft_calloc.c \
 							src/ft_strdup.c src/ft_substr.c src/ft_strjoin.c src/ft_strtrim.c src/ft_split.c src/ft_putchar_fd.c \
 							src/ft_putstr_fd.c src/ft_itoa.c src/ft_strmapi.c src/ft_striteri.c src/ft_putendl_fd.c \
-							src/ft_putnbr_fd.c
+							src/ft_putnbr_fd.c src/ft_strcmp.c
 
 SRCS			=			$(addprefix $(SRC_DIR), $(SRC))
 
@@ -62,8 +62,6 @@ clean :
 		@echo $(RED) "All files were deleted successfully!\n" $(END)
 
 fclean : clean
-		@make fclean -C ./gnl
-		@make fclean -C ./ft_printf
 		@echo $(YELLOW) "Removing $(EXEC)..." $(END)
 		@$(RM) $(EXEC)
 		@$(RM) $(BIN)

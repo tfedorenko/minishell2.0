@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fd.c                                               :+:      :+:    :+:   */
+/*   prepare_cmd_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 21:55:42 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/02 10:29:45 by rkultaev         ###   ########.fr       */
+/*   Created: 2022/08/22 10:26:42 by rkultaev          #+#    #+#             */
+/*   Updated: 2022/09/06 16:51:14 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 t_node	*set_command_pipe(t_node *prev, t_node *tmp, t_node *command)
 {
@@ -57,11 +57,20 @@ void	define_command_fd(t_node **command, t_node *prev, t_node *tmp)
 		(*command) = set_command_pipe(prev, tmp, *command);
 }
 
-t_node	*get_fd(t_node *node)
+int	set_command_fd(t_node *node)
 {
-	if (!set_delimiter_fd(node))
-		return (NULL);
-	set_command_fd(node);
-	return (node);
-}
+	t_node	*tmp;
+	t_node	*prev;
+	t_node	*command;
 
+	tmp = node;
+	prev = NULL;
+	command = NULL;
+	while (tmp)
+	{
+		define_command_fd(&command, prev, tmp);
+		prev = tmp;
+		tmp = tmp->next;
+	}
+	return (1);
+}

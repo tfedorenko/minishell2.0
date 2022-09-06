@@ -6,11 +6,11 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 19:59:17 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/30 22:36:56 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/04 13:11:38 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 void	swap_env(t_env *left, t_env *right)
 {

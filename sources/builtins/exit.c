@@ -6,11 +6,11 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:37:41 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/02 12:03:41 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:00:55 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 extern int	glob_status;
 

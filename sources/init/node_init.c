@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_unit.c                                        :+:      :+:    :+:   */
+/*   node_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 14:15:17 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/02 10:30:18 by rkultaev         ###   ########.fr       */
+/*   Created: 2022/09/06 18:03:54 by rkultaev          #+#    #+#             */
+/*   Updated: 2022/09/06 18:24:18 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_node	*new_node(int type, int size, t_env *envp)
+t_node	*init_node(int type, int size, t_env *envp)
 {
 	t_node	*new;
 
 	new = (t_node *)malloc(sizeof(t_node));
 	new->type = type;
-	new->command = (char **)malloc(sizeof(t_node));
+	new->command = (char **)malloc(sizeof(char *) * (size + 1));
 	new->command[size] = NULL;
 	new->next = NULL;
 	new->prev = NULL;
@@ -28,16 +28,22 @@ t_node	*new_node(int type, int size, t_env *envp)
 	return (new);
 }
 
-// t_node	*add_coand_matrix(t_node *new, t_token *token, int counter)
-// {
-// 	int	i;
-// 	int	j;
-	
-// 	i = 0;
-// 	j = 0;
-// 	while (i < counter)
-// 	{
-// 		if (token->val)
-// 	}
-// }
+t_node	*add_node_arr(t_node *head, t_token *target, int iter, t_env *envp)
+{
+	t_node	*new;
+	t_node	*tmp;
 
+	new = init_node(target->type, iter, envp);
+	new = add_command_arr(new, target, iter);
+	if (head == NULL)
+		head = new;
+	else
+	{
+		tmp = head;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+		new->prev = tmp;
+	}
+	return (head);
+}

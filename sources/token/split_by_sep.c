@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 22:26:08 by hako              #+#    #+#             */
-/*   Updated: 2022/09/03 15:08:37 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/05 11:21:15 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static t_token	*join_list_center(t_token *pos,
 	t_token	*separated;
 	char	*tmp;
 
-	separated = ft_malloc(sizeof(t_token) * sep_size);
+	separated = malloc(sizeof(t_token) * sep_size);
 	separated->value = ft_substr(pos->value, *index, sep_size);
 	separated->next = pos->next;
 	pos->next->prev = separated;
 	pos->next = separated;
 	separated->prev = pos;
 	pos = pos->next;
-	separated = ft_malloc(sizeof(t_token));
+	separated = malloc(sizeof(t_token));
 	separated->value = ft_substr(pos->prev->value, *index + sep_size, size);
 	separated->next = pos->next;
 	pos->next->prev = separated;
@@ -45,13 +45,13 @@ static t_token	*join_list_back(t_token *pos,
 	t_token	*separated;
 	char	*tmp;
 
-	separated = ft_malloc(sizeof(t_token));
+	separated = malloc(sizeof(t_token));
 	separated->value = ft_substr(pos->value, *index, sep_size);
 	pos->next = separated;
 	separated->prev = pos;
 	separated->next = NULL;
 	pos = pos->next;
-	separated = ft_malloc(sizeof(t_token));
+	separated = malloc(sizeof(t_token));
 	separated->value = ft_substr(pos->prev->value, *index + sep_size, size);
 	pos->next = separated;
 	separated->prev = pos;
@@ -97,7 +97,7 @@ static t_token	*split_target_token(t_token *token,
 			sep_size = check_duple_sep(tmp->value, i);
 			if (sep_size == 0)
 			{
-				free_token_all(token);
+				free_all_token(token);
 				return (NULL);
 			}
 			tmp = do_split_by_seps(tmp, sep_size, &i, size);

@@ -6,11 +6,11 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 12:46:33 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/02 10:29:15 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/05 12:47:20 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 static void	cd_home(t_node *node)
 {
@@ -19,10 +19,12 @@ static void	cd_home(t_node *node)
 	home_path = get_env(node->env, "HOME");
 	if (!home_path)
 	{
-		prompt_error("cd", NULL, strerror(errno));
+		print_error(ft_strdup("cd: "), ft_strjoin(node->command[1], \
+			"HOME is not set\n"), 1);
 	}
 	else if (chdir(home_path) == ERROR)
-		prompt_error("cd", NULL, strerror(errno));
+		print_error(ft_strdup("cd: "), ft_strjoin(node->command[1], \
+			": No such file or directory\n"), 1);
 	return (ft_free(home_path));
 }
 

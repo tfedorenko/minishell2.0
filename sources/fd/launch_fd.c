@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution_utils.c                                  :+:      :+:    :+:   */
+/*   launch_fd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 15:45:17 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/06 17:35:42 by rkultaev         ###   ########.fr       */
+/*   Created: 2022/08/31 21:55:42 by rkultaev          #+#    #+#             */
+/*   Updated: 2022/09/06 16:53:36 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	is_single_command(t_node *node)
+t_node	*launch_fd(t_node *node)
 {
-	if (!node->next)
-		return (1);
-	return (0);
-}
-
-void	my_dup2(int fd1, int fd2)
-{
-	if (dup2(fd1, fd2) == ERROR)
-		exit_error("dup2 failed", 1);
+	if (!set_delimiter_fd(node))
+		return (NULL);
+	set_command_fd(node);
+	return (node);
 }

@@ -6,11 +6,11 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:59:20 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/02 10:29:37 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/04 13:12:30 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 t_env	*unset_env(t_env *env, char *key)
 {

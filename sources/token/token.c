@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:28:58 by hako              #+#    #+#             */
-/*   Updated: 2022/09/03 15:09:01 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/06 10:15:24 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_token	*add_token(t_token *head, char *value)
 	t_token	*new;
 	t_token	*tmp;
 
-	new = (t_token *)ft_malloc(sizeof(t_token));
+	new = (t_token *)malloc(sizeof(t_token));
 	new->value = value;
 	new->next = NULL;
 	new->prev = NULL;
@@ -74,7 +74,7 @@ t_token	*add_type(t_token *token)
 	return (token);
 }
 
-t_node	*add_cmd_arr(t_node *new, t_token *target, int iter)
+t_node	*add_command_arr(t_node *new, t_token *target, int iter)
 {
 	int	i;
 	int	j;

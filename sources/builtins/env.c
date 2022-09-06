@@ -6,11 +6,11 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 13:24:04 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/02 10:29:21 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/05 11:26:18 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 void	give_all_env(t_env *env, int prefix)
 {
@@ -34,4 +34,3 @@ void	env(t_env *env)
 {
 	give_all_env(env, 0);
 }
-

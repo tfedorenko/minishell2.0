@@ -6,11 +6,11 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:59:51 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/02 19:45:39 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/04 13:26:41 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 t_env	*set_builtin_env(t_env *env, char *key, char *value)
 {
@@ -69,7 +69,7 @@ void	update_envp(t_node *node)
 			continue ;
 		}
 		value = set_value(node->command[i], delim);
-		node->env = set_env(node->env, key, value);
+		node->env = set_builtin_env(node->env, key, value);
 	}
 }
 

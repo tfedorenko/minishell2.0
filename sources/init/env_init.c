@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initenv.c                                          :+:      :+:    :+:   */
+/*   env_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:23:33 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/02 13:08:28 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:16:56 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
-t_env	*set_env(char **env, int i)
+t_env	*set_init_env(char **env, int i)
 {
 	int		j;
 	t_env	*new;
 
 	i = 0;
+	j = 0;
 	while (env[i][j] != '=')
 		j++;
 	new = (t_env *)malloc(sizeof(t_env));
@@ -27,7 +28,7 @@ t_env	*set_env(char **env, int i)
 	return (new);
 }
 
-t_env	*init_env(char **env)
+t_env	*env_init(char **env)
 {
 	int		i;
 	t_env	*head;
@@ -39,7 +40,7 @@ t_env	*init_env(char **env)
 	i = 0;
 	while (env[i])
 	{
-		new_list = set_env(env, i);
+		new_list = set_init_env(env, i);
 		if (!head)
 		{
 			head = new_list;

@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 16:02:04 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/03 20:52:26 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:39:11 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ typedef struct s_exec
 	char	**env;
 }	t_exec;
 
+typedef struct s_env
+{
+	char			*key;
+	char			*value;
+	struct s_env	*next;
+}	t_env;
+
 typedef struct s_node
 {
 	char			**command;
@@ -47,13 +54,6 @@ typedef struct s_node
 	struct s_node	*next;
 	struct s_node	*prev;
 }	t_node;
-
-typedef struct s_env
-{
-	char			*key;
-	char			*value;
-	struct s_env	*next;
-}	t_env;
 
 typedef struct s_list
 {

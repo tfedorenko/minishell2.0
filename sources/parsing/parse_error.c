@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 22:21:46 by hako              #+#    #+#             */
-/*   Updated: 2022/09/03 15:18:55 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:31:26 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@ t_token *open_quote_err(t_token *head)
 {
 	printf("minishell: open quotation syntax error\n");
 	g_stat = ERR_SYNTAX;
-	free_token_all(head);
+	free_all_token(head);
 	return (NULL);
 }
 
-int print_syntax_error(t_token **token, const char *msg)
+int	print_syntax_error(t_token **token, const char *msg)
 {
 	printf("minishell: %s", msg);
 	g_stat = ERR_SYNTAX;
-	free_token_all(*token);
+	free_all_token(*token);
 	*token = NULL;
 	return (-1);
 }
 
-int error_handler(t_token **token, t_token **tmp)
+int	error_handler(t_token **token, t_token **tmp)
 {
 	if ((*tmp)->type == PIPE)
 	{

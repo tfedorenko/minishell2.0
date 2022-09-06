@@ -6,11 +6,11 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 13:14:29 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/03 20:31:19 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:52:27 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 int	glob_status;
 
@@ -92,18 +92,18 @@ void	minishell(t_env *envp)
 
 	token = NULL;
 	node = NULL;
-	write(1, "\033[s", 3);
-	write(1, "\033[u", 3);
 	line = readline("minishell$ ");
 	if (!line)
+	{
 		eof_exit(envp);
+	}
 	else if (*line == '\0')
 		free(line);
 	else
 	{
 		add_history(line);
 		token = do_parse(line, envp);
-		node = exec_unit(&token, envp);
+		node = exec_handle_node(&token, envp);
 		if (node)
 			execute(node);
 		free_all_token(token);
@@ -114,12 +114,12 @@ void	minishell(t_env *envp)
 
 int	main(int argc, char **argv, char **env)
 {
-	char	*str;
+	// char	*str;
 	t_env	*envp;
 
 	argc += 0;
 	argv += 0;
-	envp = init_env(env);
+	envp = env_init(env);
 	glob_status = 0;
 	while (1)
 	{

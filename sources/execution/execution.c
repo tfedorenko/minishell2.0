@@ -6,11 +6,11 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:36:51 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/02 12:57:49 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:36:34 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "../../includes/minishell.h"
 
 extern int	glob_status;
 
@@ -30,7 +30,7 @@ pid_t	command(t_node *node)
 		if (is_builtin(node))
 			builtin(MULTI_CMD, node);
 		else
-			execve_action(node);
+			launch_execve(node);
 		exit(glob_status);
 	}
 	else

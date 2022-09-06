@@ -6,11 +6,11 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:22:18 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/03 15:48:13 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/06 12:00:14 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 void	ft_free(void *str)
 {
@@ -55,9 +55,10 @@ void	free_all_nodes(t_node *head)
 	tmp = head;
 	while (tmp)
 	{
-		if (target_file->fd[IN] != -1 && target_file->fd[IN] != 0)
+		target_file = tmp;
+		if (target_file->fd[IN] != ERROR && target_file->fd[IN] != 0)
 			close(target_file->fd[IN]);
-		if (target_file->fd[OUT] != -1 && target_file->fd[OUT] != 1)
+		if (target_file->fd[OUT] != ERROR && target_file->fd[OUT] != 1)
 			close(target_file->fd[OUT]);
 		if (target_file->command)
 		{
@@ -88,24 +89,6 @@ void	free_all_env(t_env *head)
 			free(pointer-> value);
 		tmp = tmp->next;
 		free(pointer);
-	}
-}
-
-void	free_all_token(t_token *head)
-{
-	t_token	*tmp;
-	t_token	*target;
-
-	if (!head)
-		return ;
-	tmp = head;
-	while (tmp)
-	{
-		target = tmp;
-		if (target->value)
-			free(target->value);
-		tmp = tmp->next;
-		free(target);
 	}
 }
 

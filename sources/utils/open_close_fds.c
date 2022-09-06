@@ -6,11 +6,11 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 09:48:35 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/02 19:57:29 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/06 12:55:54 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 void	my_close(int fd)
 {
@@ -39,7 +39,7 @@ void	close_pipes(t_node *node)
 				if (tmp->fd[IN] > 2)
 					my_close(tmp->fd[IN]);
 			}
-		} 
+		}
 	tmp = tmp->next;
 	}
 }

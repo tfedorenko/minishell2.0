@@ -6,11 +6,11 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 13:05:27 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/08/30 22:38:05 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/04 13:10:56 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 static int	flag_n(char *flag)
 {
