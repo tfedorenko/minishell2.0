@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 10:26:42 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/06 16:51:14 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/06 21:03:03 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,6 @@ void	set_command_output(t_node *tmp, t_node *command)
 		my_close(tmp->next->fd[OUT]);
 	if (command)
 		command->fd[OUT] = tmp->fd[OUT];
-}
-
-t_node	*init_command(t_node *prev, t_node *command)
-{
-	if (prev && prev->type > CMD)
-		command->fd[IN] = prev->fd[IN];
-	if (command->next == NULL)
-		command->fd[OUT] = 1;
-	return (command);
 }
 
 void	define_command_fd(t_node **command, t_node *prev, t_node *tmp)

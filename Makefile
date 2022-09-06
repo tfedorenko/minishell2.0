@@ -6,7 +6,7 @@
 #    By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/03 16:27:01 by rkultaev          #+#    #+#              #
-#    Updated: 2022/09/06 18:51:07 by rkultaev         ###   ########.fr        #
+#    Updated: 2022/09/06 21:15:11 by rkultaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ SRC_FD				=			heredoc_fd.c heredoc_handle_tmp_files.c \
 
 SRC_INIT_DIR		=			$(SRCS_DIR)/init/
 SRC_INIT			=			args_init.c env_init_arr.c env_init.c node_init.c \
-								
+								fd_command_init.c
 
 SRC_PARSING_DIR		=			$(SRCS_DIR)/parsing/
 SRC_PARSING			=			parse_check.c parse_error.c search_env.c

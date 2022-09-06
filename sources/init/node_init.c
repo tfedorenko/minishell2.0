@@ -6,11 +6,11 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 18:03:54 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/06 18:24:18 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/06 21:01:55 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 t_node	*init_node(int type, int size, t_env *envp)
 {
