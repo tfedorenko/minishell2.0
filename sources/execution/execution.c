@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:36:51 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/06 21:48:00 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/07 11:49:36 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	execute(t_node *process)
 	{
 		while (process)
 		{
+			//SIGNALS HERE
 			if (process->type == CMD && ++nb_child)
 				pid = command(process);
 			process = process->next;

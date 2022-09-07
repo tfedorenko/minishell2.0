@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:24:03 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/04 13:38:37 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/07 13:02:54 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ char	*set_command_path(char *command, char **paths)
 	int		fd;
 
 	i = -1;
+	// if (ft_strchr(command, '/'))
+	// 	return (command);
 	while (paths && paths[++i])
 	{
 		tmp_cmd = ft_strjoin("/", command);
