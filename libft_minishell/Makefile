@@ -6,7 +6,7 @@
 #    By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/29 14:27:16 by rkultaev          #+#    #+#              #
-#    Updated: 2022/09/05 12:11:09 by rkultaev         ###   ########.fr        #
+#    Updated: 2022/09/07 15:42:42 by rkultaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,28 +44,28 @@ INCLUDES		=			./libft.h
 all : $(BIN) $(EXEC)
 
 $(EXEC) : $(OBJS)
-		@echo $(YELLOW) "Copying and archiving object files...$(EXEC)" $(END)
+#@echo $(YELLOW) "Copying and archiving object files...$(EXEC)" $(END)
 		@ar rc $(EXEC) $(OBJS)
 		@ranlib $(EXEC)
-		@echo $(GREEN) "$(EXEC) was created successfully!\n" $(END)
+#@echo $(GREEN) "$(EXEC) was created successfully!\n" $(END)
 
 $(BIN) :
 		@mkdir $(BIN)
 
 $(BIN)%.o: src/%.c
-		@echo $(YELLOW) "Compiling..." $< $(END)
+#@echo $(YELLOW) "Compiling..." $< $(END)
 		@$(CC) $(CFLAGS) -c $< -o $@
 
 clean : 
-		@echo $(YELLOW) "Removing object files...$(EXEC)" $(END)
+#@echo $(YELLOW) "Removing object files...$(EXEC)" $(END)
 		@$(RM) $(OBJS)
-		@echo $(RED) "All files were deleted successfully!\n" $(END)
+#@echo $(RED) "All files were deleted successfully!\n" $(END)
 
 fclean : clean
-		@echo $(YELLOW) "Removing $(EXEC)..." $(END)
+#@echo $(YELLOW) "Removing $(EXEC)..." $(END)
 		@$(RM) $(EXEC)
 		@$(RM) $(BIN)
-		@echo $(RED) "$(EXEC) was deleted successfully!\n" $(END)
+#@echo $(RED) "$(EXEC) was deleted successfully!\n" $(END)
 		
 re : fclean all
 
