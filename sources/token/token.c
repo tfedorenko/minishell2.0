@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:28:58 by hako              #+#    #+#             */
-/*   Updated: 2022/09/06 10:15:24 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/08 13:47:40 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,31 +66,10 @@ t_token	*add_type(t_token *token)
 		else if (tmp->value[0] == '|')
 			tmp->type = PIPE;
 		else if (tmp->value[0] == ';')
-			tmp->type = END;
+			tmp->type = BREAK;
 		else
 			tmp->type = CMD;
 		tmp = tmp->next;
 	}
 	return (token);
-}
-
-t_node	*add_command_arr(t_node *new, t_token *target, int iter)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i < iter)
-	{
-		if (target->value != NULL)
-		{
-			new->command[j] = ft_strdup(target->value);
-			j++;
-		}
-		target = target->next;
-		i++;
-	}
-	new->command[j] = NULL;
-	return (new);
 }

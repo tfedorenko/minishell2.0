@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:43:30 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/06 16:44:07 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/08 20:10:13 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	set_fd_input(t_node *head, t_node *file)
 		{
 			printf("minishell: %s: No such file or directory\n",
 				file->command[1]);
-			glob_status = ERR_ETC;
+			// glob_status = ERR_ETC;
 			return (1);
 		}
 	}

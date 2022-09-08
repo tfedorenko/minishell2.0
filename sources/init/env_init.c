@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:23:33 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/07 13:05:21 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/08 19:03:15 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_env	*set_init_env(char **env, int i)
 	int		j;
 	t_env	*new;
 
-	i = 0;
 	j = 0;
 	while (env[i][j] != '=')
 		j++;
@@ -28,23 +27,23 @@ t_env	*set_init_env(char **env, int i)
 	return (new);
 }
 
-t_env	*env_init(char **env)
+t_env	*env_init(t_env **head, char **env)
 {
 	int		i;
-	t_env	*head;
+	// t_env	*head;
 	t_env	*new_list;
 	t_env	*tmp;
 
-	head = NULL;
-	tmp = head;
+	*head = NULL;
+	tmp = *head;
 	i = 0;
 	while (env[i])
 	{
 		new_list = set_init_env(env, i);
-		if (!head)
+		if (!(*head))
 		{
-			head = new_list;
-			tmp = head;
+			*head = new_list;
+			tmp = *head;
 			i++;
 			continue ;
 		}
@@ -53,5 +52,5 @@ t_env	*env_init(char **env)
 		tmp = tmp->next;
 		i++;
 	}
-	return (head);
+	return (*head);
 }

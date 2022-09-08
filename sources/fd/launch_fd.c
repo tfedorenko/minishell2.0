@@ -6,16 +6,16 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 21:55:42 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/06 16:53:36 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/08 21:07:29 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_node	*launch_fd(t_node *node)
+t_node	*launch_fd(t_node *head)
 {
-	if (!set_delimiter_fd(node))
+	if (!set_delimiter_fd(head))
 		return (NULL);
-	set_command_fd(node);
-	return (node);
+	set_command_fd(head);
+	return (head);
 }

@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:42:13 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/06 20:24:25 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/08 19:52:08 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 int	glob_status;
 
-int	set_delimiter_fd(t_node *node)
+int	set_delimiter_fd(t_node *head)
 {
 	t_node	*tmp;
 	int		type;
 
-	tmp = node;
+	tmp = head;
 	while (tmp)
 	{
 		if (tmp->type == INPUT || tmp->type == HEREDOC)
 		{
 			type = tmp->type;
-			if (set_fd_input(node, tmp) == 0 \
+			if (set_fd_input(head, tmp) == 0 \
 				|| (type == HEREDOC && glob_status == ERR_ETC))
 				return (0);
 		}
 		else if ((tmp->type == TRUNC || tmp->type == APPEND) \
-				&& set_fd_output(node, tmp) == 0)
+				&& set_fd_output(head, tmp) == 0)
 			return (0);
 		else if (tmp->type == PIPE)
 		{

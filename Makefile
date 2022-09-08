@@ -6,7 +6,7 @@
 #    By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/03 16:27:01 by rkultaev          #+#    #+#              #
-#    Updated: 2022/09/07 16:01:58 by rkultaev         ###   ########.fr        #
+#    Updated: 2022/09/08 14:37:35 by rkultaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ SRC_TOKEN			=			node_init_exec.c expand.c reorder_token.c split_by_sep.c \
 								token_utils.c token.c trim.c
 
 SRC_UTILS_DIR		=			$(SRCS_DIR)utils/
-SRC_UTILS			=			define_env_category.c free.c free_token.c open_close_fds.c
+SRC_UTILS			=			define_env_category.c free.c free_token.c free_node.c open_close_fds.c
 
 
 

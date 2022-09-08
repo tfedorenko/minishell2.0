@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 16:07:59 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/05 11:10:30 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/08 13:00:38 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@
 # define APPEND		4
 # define INPUT		5
 # define HEREDOC	6
-# define END		7
+# define BREAK		7
 # define FAIL		8
 
 typedef enum e_return

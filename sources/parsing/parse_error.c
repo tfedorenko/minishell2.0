@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 22:21:46 by hako              #+#    #+#             */
-/*   Updated: 2022/09/06 18:31:26 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/08 13:05:24 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ int	error_handler(t_token **token, t_token **tmp)
 {
 	if ((*tmp)->type == PIPE)
 	{
+		// printf("%s\n", (*tmp)->next->value);
 		if ((!(*tmp)->prev || (*tmp)->prev->type != CMD) || (!(*tmp)->next || (*tmp)->next->type == PIPE))
 			return (print_syntax_error(token,
 				"syntax error near unexpected token `|'\n"));
 	}
-	else if ((*tmp)->type == END)
+	else if ((*tmp)->type == BREAK)
 	{
-		if ((!(*tmp)->prev || (*tmp)->prev->type != CMD) || ((*tmp)->next && (*tmp)->next->type == END))
+		if ((!(*tmp)->prev || (*tmp)->prev->type != CMD) || ((*tmp)->next && (*tmp)->next->type == BREAK))
 			return (print_syntax_error(token,
 				"syntax error near unexpected token `;'\n"));
 	}

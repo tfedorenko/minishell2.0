@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 22:25:57 by hako              #+#    #+#             */
-/*   Updated: 2022/09/03 15:08:17 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/08 12:58:02 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_token	*reorder_token(t_token *token)
 	{
 		if (tmp->type == CMD)
 			cmd = tmp;
-		else if (tmp->type == PIPE || tmp->type == END)
+		else if (tmp->type == PIPE || tmp->type == BREAK)
 			cmd = NULL;
 		else
 		{

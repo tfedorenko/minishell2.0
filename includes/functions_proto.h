@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:46:21 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/06 18:02:02 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/08 21:11:16 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ char	*set_command_path(char *command, char **env);
 
 //execution_utils.c
 void	my_dup2(int fd1, int fd2);
-void	close_pipes(t_node *node);
+void	close_pipes(t_node *head);
 void	builtin(int single_command, t_node *node);
 int	is_builtin(t_node *node);
-int	is_single_command(t_node *node);
+int	is_single_command(t_node *head);
 
 //execution
 pid_t	command(t_node *node);
@@ -42,9 +42,9 @@ int	redirect(t_exec *process);
 //fd.c
 t_node	*set_command_pipe(t_node *prev, t_node *tmp, t_node *command);
 void	set_command_output(t_node *tmp, t_node *command);
-t_node	*init_command(t_node *prev, t_node *command);
+t_node	*init_command_fd(t_node *prev, t_node *command);
 void	define_command_fd(t_node **command, t_node *prev, t_node *tmp);
-t_node	*launch_fd(t_node *node);
+t_node	*launch_fd(t_node *head);
 
 //heredoc_handle_tmpfiles.c
 t_list	*add_files(t_list *head, char *file_name);
@@ -65,8 +65,8 @@ int	init_fd(t_exec *process, int pipes[2]);
 int	set_fd(t_exec *process, int pipes[2]);
 int	set_fd_input(t_node *head, t_node *file);
 int	set_fd_output(t_node *head, t_node *file);
-int	set_delimiter_fd(t_node *node);
-int	set_command_fd(t_node *node);
+int	set_delimiter_fd(t_node *head);
+int	set_command_fd(t_node *head);
 
 //error.c
 int	error(t_exec *process, int status);
@@ -105,7 +105,7 @@ void	env(t_env *env);
 
 //
 t_env	*set_init_env(char **env, int i);
-t_env	*env_init(char **env);
+t_env	*env_init(t_env **head, char **env);
 
 //exit
 void	is_exit(char *num);
@@ -163,8 +163,8 @@ char	*search_env(t_env *env, char *target);
 //token
 //exec_unit.c
 t_node	*init_node(int type, int size, t_env *envp);
-t_node	*add_node_arr(t_node *head, t_token *target, int iter, t_env *envp);
-t_node	*add_node_by_type(t_node *head,
+t_node	*add_node_arr(t_node **head, t_token *target, int iter, t_env *envp);
+t_node	*add_node_by_type(t_node **head,
 		t_token **token, t_token **tmp, t_env *envp);
 t_node	*get_exec_unit(t_node *head, t_token **token, 
 		t_token **tmp, t_env *envp);
@@ -192,7 +192,7 @@ t_token	*split_by_sep(t_token *token);
 t_token	*add_token(t_token *head, char *value);
 void	add_redir_type(t_token *token);
 t_token	*add_type(t_token *token);
-t_node	*add_command_arr(t_node *new, t_token *target, int iter);
+t_node	*add_command_node_arr(t_node *new_node, t_token *val, int iter);
 //trim.c
 t_token	*do_trim_space(t_token *head,
 		char *line, int *start, int i);

@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:22:18 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/06 12:00:14 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/08 14:49:43 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,34 +44,6 @@ void	free_matrix(char **str)
 		free(str);
 }
 
-void	free_all_nodes(t_node *head)
-{
-	t_node	*tmp;
-	t_node	*target_file;
-	int		i;
-
-	if (!head)
-		return ;
-	tmp = head;
-	while (tmp)
-	{
-		target_file = tmp;
-		if (target_file->fd[IN] != ERROR && target_file->fd[IN] != 0)
-			close(target_file->fd[IN]);
-		if (target_file->fd[OUT] != ERROR && target_file->fd[OUT] != 1)
-			close(target_file->fd[OUT]);
-		if (target_file->command)
-		{
-			i = -1;
-			while (target_file->command[++i])
-				free(target_file->command[i]);
-			free(target_file->command);
-		}
-	tmp = tmp->next;
-		free (target_file);
-	}
-}
-
 void	free_all_env(t_env *head)
 {
 	t_env	*tmp;
@@ -91,25 +63,3 @@ void	free_all_env(t_env *head)
 		free(pointer);
 	}
 }
-
-
-
-// void	free_env_all(t_env *head)
-// {
-// 	t_env	*tmp;
-// 	t_env	*target;
-
-// 	if (!head)
-// 		return ;
-// 	tmp = head;
-// 	while (tmp)
-// 	{
-// 		target = tmp;
-// 		if (target->key)
-// 			free(target->key);
-// 		if (target->value)
-// 			free(target->value);
-// 		tmp = tmp->nxt;
-// 		free(target);
-// 	}
-// }

@@ -6,15 +6,15 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:45:17 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/06 17:35:42 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/08 21:08:38 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	is_single_command(t_node *node)
+int	is_single_command(t_node *head)
 {
-	if (!node->next)
+	if (!head->next)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:22:51 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/06 18:48:10 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:37:34 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	*fetch_heredoc_str(char *heredoc_str, char *read_line)
 	free(tmp);
 	tmp = heredoc_str;
 	heredoc_str = ft_strjoin(tmp, read_line);
+	// printf("%s\n", heredoc_str);
 	free(tmp);
 	free(read_line);
 	return (heredoc_str);
@@ -77,7 +78,7 @@ int	fetch_heredoc_fd(t_node *node)
 	char	*readline_str;
 
 	heredoc_str = ft_strdup("");
-	glob_status = 0;
+	// glob_status = 0;
 	fd = open_temp_file();
 	while (1)
 	{

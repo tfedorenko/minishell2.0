@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 10:26:42 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/06 21:03:03 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/08 20:54:39 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	set_command_output(t_node *tmp, t_node *command)
 
 void	define_command_fd(t_node **command, t_node *prev, t_node *tmp)
 {
-	if (prev && prev->type == END)
+	if (prev && prev->type == BREAK)
 		prev = NULL;
 	if (tmp->type == CMD)
-		*command = init_command(prev, tmp);
+		*command = init_command_fd(prev, tmp);
 	if (*command && (tmp->type == INPUT || tmp->type == HEREDOC))
 	{
 		if (tmp->fd[IN] == -1)
@@ -48,13 +48,13 @@ void	define_command_fd(t_node **command, t_node *prev, t_node *tmp)
 		(*command) = set_command_pipe(prev, tmp, *command);
 }
 
-int	set_command_fd(t_node *node)
+int	set_command_fd(t_node *head)
 {
 	t_node	*tmp;
 	t_node	*prev;
 	t_node	*command;
 
-	tmp = node;
+	tmp = head;
 	prev = NULL;
 	command = NULL;
 	while (tmp)
