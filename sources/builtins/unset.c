@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:59:20 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/04 13:12:30 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/09 12:18:09 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,14 @@ t_env	*unset_env(t_env *env, char *key)
 				prev->next = tmp->next;
 			else
 				env = tmp->next;
-			ft_free(tmp->key);
-			ft_free(tmp->value);
-			ft_free(env);
+			freedom(tmp->key);
+			freedom(tmp->value);
+			freedom(env);
 		}
 		prev = tmp;
 		tmp = tmp->next;
 	}
 	return (env);
-}
-
-int	invalid_key(char *function, char *key)
-{
-	int	i;
-
-	if (ft_strlen(key) == 1 && key[0] == '_')
-		return (0);
-	i = -1;
-	while (key[++i])
-	{
-		if (!ft_isalpha(key[i]) && key[i] != '_')
-		{
-			if (i > 0 && ft_isdigit(key[i]))
-				continue ;
-			print_error(ft_strjoin(function, ": "),
-				ft_strjoin(key, ": not a valid identifier\n"), 1);
-			return (1);
-		}
-	}
-	return (0);
 }
 
 void	unset(t_node *node)

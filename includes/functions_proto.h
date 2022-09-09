@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:46:21 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/08 21:11:16 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/09 11:05:17 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	echo(t_node *node);
 
 //export
 void	swap_env(t_env *left, t_env *right);
-t_env	*sort_env(t_env *env);
+t_env	*sort_envp(t_env *env);
 t_env	*dupl_env(t_env *env);
 t_env	*dupl_envp(t_env *envp);
 void	prompt_sorted_env(t_env *envp);
@@ -131,9 +131,9 @@ bool	check_for_number_of_double_quotes(char *cmd);
 void	my_close(int fd);
 
 //utils/free.c
-void	ft_free(void *str);
+void	freedom(void *str);
 void	free_matrix(char **str);
-void	free_env(t_env *env);
+void	free_dupl_env(t_env *env);
 void	free_all_nodes(t_node *head);
 void	free_all_env(t_env *head);
 void	free_all_token(t_token *head);
@@ -163,7 +163,7 @@ char	*search_env(t_env *env, char *target);
 //token
 //exec_unit.c
 t_node	*init_node(int type, int size, t_env *envp);
-t_node	*add_node_arr(t_node **head, t_token *target, int iter, t_env *envp);
+t_node	*add_node_arr(t_node **head, t_token *token, int iter, t_env *envp);
 t_node	*add_node_by_type(t_node **head,
 		t_token **token, t_token **tmp, t_env *envp);
 t_node	*get_exec_unit(t_node *head, t_token **token, 

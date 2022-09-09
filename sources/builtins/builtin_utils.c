@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   launch_fd.c                                        :+:      :+:    :+:   */
+/*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 21:55:42 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/09 08:31:31 by rkultaev         ###   ########.fr       */
+/*   Created: 2022/09/09 12:18:53 by rkultaev          #+#    #+#             */
+/*   Updated: 2022/09/09 12:52:28 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_node	*launch_fd(t_node *head)
+int	invalid_key(char *function, char *key)
 {
-	if (set_delimiter_fd(head) == ERROR)
-		return (NULL);
-	if (set_command_fd(head) == ERROR)
-		return (NULL);
-	return (head);
+	int	i;
+
+	if (ft_strlen(key) == 1 && key[0] == '_')
+		return (0);
+	i = -1;
+	while (key[++i])
+	{
+		if (!ft_isalpha(key[i]) && key[i] != '_')
+		{
+			if (i > 0 && ft_isdigit(key[i]))
+				continue ;
+			print_error(ft_strjoin(function, ": "),
+				ft_strjoin(key, ": not a valid identifier\n"), 1);
+			return (1);
+		}
+	}
+	return (0);
 }

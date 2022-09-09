@@ -6,7 +6,7 @@
 #    By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/03 16:27:01 by rkultaev          #+#    #+#              #
-#    Updated: 2022/09/08 14:37:35 by rkultaev         ###   ########.fr        #
+#    Updated: 2022/09/09 12:19:28 by rkultaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ LIBFT				=			./libft_minishell
 
 SRC_BUILTINS_DIR	=			$(SRCS_DIR)builtins/
 SRC_BUILTINS		=			cd.c echo.c env.c exit.c export.c export_utils.c getenv.c \
-								pwd.c unset.c is_builtin.c
+								pwd.c unset.c is_builtin.c builtin_utils.c
 
 SRC_EXECUTION_DIR	=			$(SRCS_DIR)execution/
 SRC_EXECUTION		=			checker.c eof_exit.c error.c  execution_utils.c \

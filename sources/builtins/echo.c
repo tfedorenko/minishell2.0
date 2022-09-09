@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 13:05:27 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/04 13:10:56 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/09 08:59:33 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static int	flag_n(char *flag)
 	while (flag && flag[i])
 	{
 		if (flag[i] != 'n')
-			return (0);
+			return (ERROR);
 		else
 			++i;
 	}
-	return (1);
+	return (SUCCESS);
 }
 
 void	echo(t_node *node)
@@ -38,7 +38,7 @@ void	echo(t_node *node)
 	flag = 0;
 	while (node->command[++i])
 	{
-		if (node->command[i][0] == '-' && flag_n(node->command[i]))
+		if (node->command[i][0] == '-' && flag_n(node->command[i]) == SUCCESS)
 			++flag;
 		else
 			break ;

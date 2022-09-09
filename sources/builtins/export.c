@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:59:51 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/04 13:26:41 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/09 12:20:01 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_env	*set_builtin_env(t_env *env, char *key, char *value)
 {
 	env = update_env(env, key, value);
-	ft_free(key);
-	ft_free(value);
+	freedom(key);
+	freedom(value);
 	return (env);
 }
 
@@ -65,7 +65,7 @@ void	update_envp(t_node *node)
 		key = ft_substr(node->command[i], 0, delim);
 		if (invalid_key("export", key))
 		{
-			ft_free(key);
+			freedom(key);
 			continue ;
 		}
 		value = set_value(node->command[i], delim);
@@ -76,7 +76,9 @@ void	update_envp(t_node *node)
 void	export(t_node *node)
 {
 	if (node->command[1] == NULL)
+	{
 		prompt_sorted_env(node->env);
+	}
 	else
 		update_envp(node);
 }

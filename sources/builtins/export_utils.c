@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 19:59:17 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/04 13:11:38 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/09 12:02:08 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	swap_env(t_env *left, t_env *right)
 	right->value = tmp.value;
 }
 
-t_env	*sort_env(t_env *env)
+t_env	*sort_envp(t_env *env)
 {
 	t_env	*tmp;
 	t_env	*left;
@@ -40,6 +40,7 @@ t_env	*sort_env(t_env *env)
 			if (ft_strcmp(left->key, right->key) > 0)
 				swap_env(left, right);
 			right = right->next;
+		// printf("%s\n", right->value);
 		}
 		tmp = tmp->next;
 	}
@@ -51,6 +52,8 @@ t_env	*dupl_env(t_env *env)
 	t_env	*dupl_env;
 
 	dupl_env = (t_env *)malloc(sizeof(t_env));
+	if (!dupl_env)
+		return (NULL);
 	if (!env)
 	{
 		dupl_env->key = NULL;
@@ -93,7 +96,8 @@ void	prompt_sorted_env(t_env *envp)
 	t_env	*tmp;
 
 	tmp = dupl_envp(envp);
-	tmp = sort_env(tmp);
+	
+	tmp = sort_envp(tmp);
 	give_all_env(tmp, 1);
-	free_env(tmp);
+	free_dupl_env(tmp);
 }

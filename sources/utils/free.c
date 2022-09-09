@@ -6,28 +6,28 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:22:18 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/08 14:49:43 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/09 11:05:29 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_free(void *str)
+void	freedom(void *str)
 {
 	free(str);
 	str = NULL;
 }
 
-void	free_env(t_env *env)
+void	free_dupl_env(t_env *env)
 {
 	while (env)
 	{
-		ft_free(env->key);
-		ft_free(env->value);
-		ft_free(env);
+		freedom(env->key);
+		freedom(env->value);
+		freedom(env);
 		env = env->next;
 	}
-	ft_free(env);
+	freedom(env);
 }
 
 void	free_matrix(char **str)

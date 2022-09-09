@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 17:29:00 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/06 17:29:11 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/09 08:49:31 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int	is_builtin(t_node *node)
 		|| !ft_strcmp(node->command[0], "unset") \
 		|| !ft_strcmp(node->command[0], "env") \
 		|| !ft_strcmp(node->command[0], "exit"))
-		return (1);
-	return (0);
+		return (ERROR);
+	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:11:36 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/04 13:11:52 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/09 11:12:42 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_env	*make_env(char *key, char *value)
 	t_env	*env;
 
 	env = (t_env *)malloc(sizeof(t_env));
+	if (!env)
+		return (NULL);
 	env->key = ft_strdup(key);
 	if (!value)
 		env->value = NULL;

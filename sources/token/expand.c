@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 22:25:48 by hako              #+#    #+#             */
-/*   Updated: 2022/09/03 15:08:02 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/09 09:26:39 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strjoin_free_s1(char *s1, char *s2)
 
 	tmp = s1;
 	s1 = ft_strjoin(s1, s2);
-	ft_free(tmp);
+	freedom(tmp);
 	return (s1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 12:46:33 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/05 12:47:20 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/09 09:56:48 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	cd_home(t_node *node)
 	else if (chdir(home_path) == ERROR)
 		print_error(ft_strdup("cd: "), ft_strjoin(node->command[1], \
 			": No such file or directory\n"), 1);
-	return (ft_free(home_path));
+	return (freedom(home_path));
 }
 
 void	cd(t_node *node)
@@ -42,6 +42,6 @@ void	cd(t_node *node)
 	pwd = getcwd(0, PATH_MAX);
 	node->env = update_env(node->env, "OLDPWD", old_pwd);
 	node->env = update_env(node->env, "PWD", pwd);
-	ft_free(old_pwd);
-	ft_free(pwd);
+	freedom(old_pwd);
+	freedom(pwd);
 }
