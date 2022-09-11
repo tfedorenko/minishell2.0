@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_errors.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 21:36:13 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/11 13:41:53 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:12:17 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,21 @@ int	error_handler(t_token **token, t_token **tmp)
 		if ((!(*tmp)->prev || (*tmp)->prev->type != CMD) || \
 				(!(*tmp)->next || (*tmp)->next->type == PIPE))
 			return (print_syntax_error(token, \
-					"syntax error near unexpected token '|'\n"));
+					"syntax error near unexpected token `|'\n"));
 	}
 	else if ((*tmp)->type == BREAK)
 	{
 		if ((!(*tmp)->prev || (*tmp)->prev->type != CMD) || \
 					((*tmp)->next && (*tmp)->next->type == BREAK))
 			return (print_syntax_error(token, \
-					"syntax error near unexpected token ';'\n"));
+					"syntax error near unexpected token `;'\n"));
 	}
 	else if ((*tmp)->type == TRUNC || (*tmp)->type == APPEND || \
 					(*tmp)->type == INPUT || (*tmp)->type == HEREDOC)
 	{
 		if ((!(*tmp)->next) || (*tmp)->next->type > 1)
 			return (print_syntax_error(token, \
-					"syntax error near unexpected token 'newline'\n"));
+					"syntax error near unexpected token `newline'\n"));
 	}
 	return (1);
 }

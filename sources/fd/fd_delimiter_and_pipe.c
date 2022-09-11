@@ -6,13 +6,13 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:42:13 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/09 08:28:58 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:18:53 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	glob_status;
+extern int	glob_status;
 
 int	set_delimiter_fd(t_node *head)
 {
@@ -39,5 +39,5 @@ int	set_delimiter_fd(t_node *head)
 		}
 		tmp = tmp->next;
 	}
-	return (SUCCESS);
+	return (1);
 }
