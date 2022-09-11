@@ -6,7 +6,7 @@
 /*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:43:30 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/09 18:06:44 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:25:05 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	set_fd_output(t_node *head, t_node *file)
 {
 	if (file->type == APPEND)
 	{
-		file->fd[OUT] = open(file->command[1], O_CREAT | O_WRONLY | O_APPEND);
+		file->fd[OUT] = open(file->command[1], O_CREAT | O_WRONLY | O_APPEND, 0666);
 		if (file->fd[OUT] == ERROR)
 		{
 			free_all_nodes(head);
@@ -47,7 +47,7 @@ int	set_fd_output(t_node *head, t_node *file)
 	}
 	else if (file->type == TRUNC)
 	{
-		file->fd[OUT] = open(file->command[1], O_CREAT | O_WRONLY | O_APPEND);
+		file->fd[OUT] = open(file->command[1], O_CREAT | O_WRONLY | O_TRUNC, 0666);
 		if (file->fd[OUT] == ERROR)
 		{
 			free_all_nodes(head);

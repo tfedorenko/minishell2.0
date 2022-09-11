@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:59:51 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/09 12:20:01 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/11 17:58:59 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

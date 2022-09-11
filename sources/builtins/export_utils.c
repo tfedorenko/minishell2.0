@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 19:59:17 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/09 12:02:08 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:14:35 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,14 @@ t_env	*dupl_envp(t_env *envp)
 		tmp = dupl_envp;
 		while (envp->next)
 		{
+			printf("%s\n", envp->key);
 			envp = envp->next;
 			tmp->next = (t_env *)malloc(sizeof(t_env));
 			tmp->next->key = ft_strdup(envp->key);
-			tmp->next->value = ft_strdup(envp->value);
-			tmp->next->next = NULL;
+			if (tmp->next->value)
+				tmp->next->value = ft_strdup(envp->value);
+			if (tmp->next)
+				tmp->next->next = NULL;
 			tmp = tmp->next;
 		}
 	}
@@ -96,7 +99,6 @@ void	prompt_sorted_env(t_env *envp)
 	t_env	*tmp;
 
 	tmp = dupl_envp(envp);
-	
 	tmp = sort_envp(tmp);
 	give_all_env(tmp, 1);
 	free_dupl_env(tmp);
