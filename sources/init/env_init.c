@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:23:33 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/08 19:03:15 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:01:09 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_env	*set_init_env(char **env, int i)
 	while (env[i][j] != '=')
 		j++;
 	new = (t_env *)malloc(sizeof(t_env));
+	if (!new)
+		return (NULL);
 	new->key = ft_substr(env[i], 0, j);
 	new->value = ft_substr(env[i], j + 1, ft_strlen(env[i]));
 	new->next = NULL;

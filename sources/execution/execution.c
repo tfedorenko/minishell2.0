@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:36:51 by rkultaev          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/09/11 22:59:56 by tfedoren         ###   ########.fr       */
+=======
+/*   Updated: 2022/09/11 19:26:55 by rkultaev         ###   ########.fr       */
+>>>>>>> 1bd0ad02e85255d0011d18900d3c87c8defa80b1
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +80,10 @@ void	wait_child(int nb_child, int pid)
 
 void	execute(t_node *process)
 {
-	int		nb_child;
+	int		child_counter;
 	pid_t	pid;
 
-	nb_child = 0;
+	child_counter = 0;
 	if (is_single_command(process) && is_builtin(process))
 	{
 		if (ft_strcmp(process->command[0], "exit"))
@@ -90,12 +94,12 @@ void	execute(t_node *process)
 	{
 		while (process)
 		{
-			if (process->type == CMD && ++nb_child)
+			if (process->type == CMD && ++child_counter)
 			{
 				pid = command(process);
 			}
 			process = process->next;
 		}
-		wait_child(nb_child, pid);
+		wait_child(child_counter, pid);
 	}
 }

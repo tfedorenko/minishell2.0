@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 13:14:29 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/11 16:43:44 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:02:02 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,16 +94,7 @@ int	main(int argc, char **argv, char **env)
 	// line = readline("minishell$ ");
 	while (1)
 	{
-	signals_function();
-		// while (line[i])
-		// {
-		// 	// eof_exit(envp);
-		// 	line++;
-		// 	// exit(0);
-		// 	break ;
-		// }
-		// signal(SIGINT, sig_int);
-		// signal(SIGQUIT, SIG_IGN);
+		signals_function();
 		minishell(envp);
 	}
 	return (SUCCESS);

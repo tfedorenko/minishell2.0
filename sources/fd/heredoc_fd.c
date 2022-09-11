@@ -6,9 +6,7 @@
 /*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:22:51 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/11 22:58:51 by tfedoren         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
 
 #include "../../includes/minishell.h"
 
@@ -72,6 +70,14 @@ int	fetch_heredoc_read_end(int temp_fd, char *heredoc_str)
 
 static void	pre_heredoc(char *readline_str, char *heredoc_str, t_node *node)
 {
+	int		fd;
+	char	*heredoc_str;
+	char	*readline_str;
+
+	heredoc_str = ft_strdup("");
+	glob_status = 0;
+	fd = open_temp_file();
+
 	while (1)
 	{
 		readline_str = readline("> ");

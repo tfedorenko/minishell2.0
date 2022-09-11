@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 21:55:42 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/09 08:31:31 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:15:41 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 t_node	*launch_fd(t_node *head)
 {
-	if (set_delimiter_fd(head) == ERROR)
+	if (!set_delimiter_fd(head))
 		return (NULL);
-	if (set_command_fd(head) == ERROR)
-		return (NULL);
+	set_command_fd(head);
 	return (head);
 }

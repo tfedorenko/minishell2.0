@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 10:26:42 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/09 08:30:49 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:20:38 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ int	set_command_fd(t_node *head)
 		prev = tmp;
 		tmp = tmp->next;
 	}
-	return (SUCCESS);
+	return (1);
 }
