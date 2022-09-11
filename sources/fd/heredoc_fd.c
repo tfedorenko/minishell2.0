@@ -71,8 +71,6 @@ int	fetch_heredoc_read_end(int temp_fd, char *heredoc_str)
 static void	pre_heredoc(char *readline_str, char *heredoc_str, t_node *node)
 {
 	int		fd;
-	char	*heredoc_str;
-	char	*readline_str;
 
 	heredoc_str = ft_strdup("");
 	glob_status = 0;

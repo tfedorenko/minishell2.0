@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/22 11:36:51 by rkultaev          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/09/11 22:59:56 by tfedoren         ###   ########.fr       */
-=======
-/*   Updated: 2022/09/11 19:26:55 by rkultaev         ###   ########.fr       */
->>>>>>> 1bd0ad02e85255d0011d18900d3c87c8defa80b1
+/*   Created: 2022/09/11 23:06:48 by tfedoren          #+#    #+#             */
+/*   Updated: 2022/09/11 23:06:49 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include "../../includes/minishell.h"
 
