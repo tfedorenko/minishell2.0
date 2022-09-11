@@ -6,7 +6,7 @@
 /*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 16:07:59 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/11 12:21:05 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:01:21 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@
 # define HEREDOC	6
 # define BREAK		7
 # define FAIL		8
-
 
 typedef enum e_return
 {

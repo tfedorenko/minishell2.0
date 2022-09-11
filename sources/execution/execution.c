@@ -6,13 +6,21 @@
 /*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:36:51 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/11 17:30:33 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/11 22:59:56 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 extern int	glob_status;
+
+static void	fd_descriptor(t_node *node)
+{
+	if (node->fd[IN] != 0)
+		my_close(node->fd[IN]);
+	if (node->fd[OUT] != 1)
+		my_close(node->fd[OUT]);
+}
 
 pid_t	command(t_node *node)
 {
@@ -35,12 +43,7 @@ pid_t	command(t_node *node)
 		exit(glob_status);
 	}
 	else
-	{
-		if (node->fd[IN] != 0)
-			my_close(node->fd[IN]);
-		if (node->fd[OUT] != 1)
-			my_close(node->fd[OUT]);
-	}
+		fd_descriptor(node);
 	return (pid);
 }
 

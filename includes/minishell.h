@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:25:24 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/04 13:04:59 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:01:32 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@
 # include <errno.h>
 # include <sys/ioctl.h>
 # include <termios.h>
-// # include </Users/tfedoren/goinfre/.brew/opt/readline/include/readline/readline.h>
-// # include </Users/tfedoren/goinfre/.brew/opt/readline/include/readline/history.h>
 
 # include "libft.h"
 // # include "ft_printf.h"

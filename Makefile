@@ -6,7 +6,7 @@
 #    By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/03 16:27:01 by rkultaev          #+#    #+#              #
-#    Updated: 2022/09/11 13:46:43 by tfedoren         ###   ########.fr        #
+#    Updated: 2022/09/11 22:43:33 by tfedoren         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ SRC_TOKENS_AND_PARSING	=					add_type.c do_parse.c expand.c handle_node.c helper
 											split_by_sep.c token_order.c  trim_quote.c trim_space.c 
 
 SRC_SIGNALS_DIR					=			$(SRCS_DIR)signals/
-SRC_SIGNALS						=			signals_signals.c
+SRC_SIGNALS						=			signals_signals.c signals_signals_2.c
 
 # SRC_TOKEN_DIR		=			$(SRCS_DIR)token/
 # SRC_TOKEN			=			node_init_exec.c expand.c reorder_token.c split_by_sep.c \

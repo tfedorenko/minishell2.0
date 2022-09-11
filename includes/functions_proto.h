@@ -6,7 +6,7 @@
 /*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:46:21 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/11 16:18:31 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/11 21:14:04 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 # include "minishell.h"
 
 // checker.c
-char 	**path_to_env(t_node *node);
+char	**path_to_env(t_node *node);
 char	*set_command_path(char *command, char **env);
 
 //execution_utils.c
 void	my_dup2(int fd1, int fd2);
 void	close_pipes(t_node *head);
 void	builtin(int single_command, t_node *node);
-int	is_builtin(t_node *node);
-int	is_single_command(t_node *head);
+int		is_builtin(t_node *node);
+int		is_single_command(t_node *head);
 
 //execution
 pid_t	command(t_node *node);
@@ -35,12 +35,12 @@ void	execute(t_node *process);
 //execve.c
 void	my_execve(char *file, char **argv, char **envp);
 void	launch_execve(t_node *node);
-int	args_init(t_node *node, t_exec *args);
+int		args_init(t_node *node, t_exec *args);
 char	**env_init_arr(t_env *envp);
-int	env_counter_arr(t_env *envp);
+int		env_counter_arr(t_env *envp);
 
 // redirects.c
-int	redirect(t_exec *process);
+int		redirect(t_exec *process);
 
 //fd.c
 t_node	*set_command_pipe(t_node *prev, t_node *tmp, t_node *command);
@@ -56,31 +56,29 @@ t_list	*get_files(t_list *head);
 t_list	*temp_files(char *file_name, int command);
 
 //heredoc_fd.c
-int	open_temp_file(void);
+int		open_temp_file(void);
 char	*fetch_heredoc_str(char *heredoc_str, char *read_line);
-int	fetch_heredoc_read_end(int temp_fd, char *heredoc_str);
-int	fetch_heredoc_fd(t_node *node);
-
-
+int		fetch_heredoc_read_end(int temp_fd, char *heredoc_str);
+int		fetch_heredoc_fd(t_node *node);
 
 //init_fd.c
-int	init_fd(t_exec *process, int pipes[2]);
-int	set_fd(t_exec *process, int pipes[2]);
-int	set_fd_input(t_node *head, t_node *file);
-int	set_fd_output(t_node *head, t_node *file);
-int	set_delimiter_fd(t_node *head);
-int	set_command_fd(t_node *head);
+int		init_fd(t_exec *process, int pipes[2]);
+int		set_fd(t_exec *process, int pipes[2]);
+int		set_fd_input(t_node *head, t_node *file);
+int		set_fd_output(t_node *head, t_node *file);
+int		set_delimiter_fd(t_node *head);
+int		set_command_fd(t_node *head);
 
 //error.c
-int	error(t_exec *process, int status);
-int	prompt_error(char *cmd, char *argv, char *error);
-void print_error(char *function, char *msg, int status);
-void print_error2(char *message, int status);
+int		error(t_exec *process, int status);
+int		prompt_error(char *cmd, char *argv, char *error);
+void	print_error(char *function, char *msg, int status);
+void	print_error2(char *message, int status);
 void	exit_error(char *message, int status);
 
 //family.c
-int	child_process(t_exec *process, int pipes[2]);
-int	parent_process(t_exec *process);
+int		child_process(t_exec *process, int pipes[2]);
+int		parent_process(t_exec *process);
 
 //cd
 void	cd(t_node *node);
@@ -96,7 +94,7 @@ t_env	*dupl_envp(t_env *envp);
 void	prompt_sorted_env(t_env *envp);
 t_env	*set_builtin_env(t_env *env, char *key, char *value);
 char	*set_value(char *str, int delim);
-int	find_delim(char *str, int delim);
+int		find_delim(char *str, int delim);
 void	update_envp(t_node *node);
 void	export(t_node *node);
 
@@ -118,14 +116,14 @@ void	my_exit(int single_command, t_node *node);
 void	pwd(void);
 
 //unset
-int	invalid_key(char *function, char *key);
-int	invalid_key(char *function, char *key);
+int		invalid_key(char *function, char *key);
+int		invalid_key(char *function, char *key);
 void	unset(t_node *node);
 
 //parsing
 void	print_prompt(char *text);
 char	*read_next_command(char *buf);
-int number_of_quotes_counter(char *cmd, char *quote);
+int		number_of_quotes_counter(char *cmd, char *quote);
 bool	errors_connected_with_qoutes_handler(char *cmd);
 bool	check_for_number_of_single_quotes(char *cmd);
 bool	check_for_number_of_double_quotes(char *cmd);
@@ -144,7 +142,6 @@ void	free_all_token(t_token *head);
 //exit.c
 void	eof_exit(t_env *envp);
 
-
 //signal
 //signal.c
 // void	sigquit(int signal);
@@ -155,34 +152,28 @@ void	signals_function(void);
 void	sigint_handler(int sig);
 void	signals_function_cat(void);
 void	sig_handler_cat(int sig);
+void	heredoc_signal_function(void);
+void	heredoc_signal_function(void);
 // void	print_prompt(char *text);
 
-//parse_utils
-//parse_check.c
 void	check_quote(char target, int *sq, int *dq);
-int	check_duple_sep(char *token, int pos);
+int		check_duple_sep(char *token, int pos);
 t_token	*join_list_back(t_token *pos, int sep_size, int *index, int size);
 t_token	*join_list_center(t_token *pos, int sep_size, int *index, int size);
-//parse_error.c
-t_token *open_quote_err(t_token *head);
-int print_syntax_error(t_token **token, const char *msg);
-int error_handler(t_token **token, t_token **tmp);
-//search_env.c
+t_token	*open_quote_err(t_token *head);
+int		print_syntax_error(t_token **token, const char *msg);
+int		error_handler(t_token **token, t_token **tmp);
 char	*search_env(t_env *env, char *target);
-
-//token
-//exec_unit.c
 t_node	*init_node(int type, int size, t_env *envp);
 t_node	*add_node_arr(t_node **head, t_token *token, int iter, t_env *envp);
 t_node	*add_node_by_type(t_node **head,
-		t_token **token, t_token **tmp, t_env *envp);
-t_node	*get_exec_unit(t_node *head, t_token **token, 
-		t_token **tmp, t_env *envp);
+			t_token **token, t_token **tmp, t_env *envp);
+t_node	*get_exec_unit(t_node *head, t_token **token,
+			t_token **tmp, t_env *envp);
 t_node	*exec_handle_node(t_token **token, t_env *envp);
-//expand.c
 char	*ft_strjoin_free_s1(char *s1, char *s2);
 void	set_expanded_value(t_token *token,
-		char *replaced, int start, int *index);
+			char *replaced, int start, int *index);
 void	expand_home_var(t_token *tmp, t_env *env, int *index);
 void	expand_env_var(t_token *tmp, t_env *env, int *index);
 t_token	*expand(t_token *token, t_env *env);
@@ -192,20 +183,12 @@ t_token	*expand(t_token *token, t_env *env);
 // static t_token	*do_reorder_token(t_token **head, t_token *file,
 // 		t_token *redir, t_token *cmd);
 t_token	*reorder_token(t_token *token);
-//split_by_sep.c
-// static t_token	*join_list_center(t_token *pos, int sep_size, int *index, int size);
-// static t_token	*join_list_back(t_token *pos, int sep_size, int *index, int size);
-// static t_token	*do_split_by_seps(t_token *pos, int sep_size, int *index, int size);
-// static t_token	*split_target_token(t_token *token, t_token *tmp, int *squote, int *dquote);
 t_token	*split_by_sep(t_token *token);
-//token.c
 t_token	*add_token(t_token *head, char *value);
 void	add_redir_type(t_token *token);
 t_token	*add_type(t_token *token);
 t_node	*add_command_node_arr(t_node *new_node, t_token *val, int iter);
-//trim.c
-t_token	*do_trim_space(t_token *head,
-		char *line, int *start, int i);
+t_token	*do_trim_space(t_token *head, char *line, int *start, int i);
 t_token	*trim_space(char *line);
 char	*inside_quote(char *value, int start, int *mid);
 void	do_trim_quote(t_token *tmp);
@@ -213,25 +196,16 @@ t_token	*trim_quote(t_token *token);
 
 //utils.c
 //define_env_category.c
-int	is_general_env_var(char *target, int squote);
-int	is_home_env_var(char *target, int squote);
+int		is_general_env_var(char *target, int squote);
+int		is_home_env_var(char *target, int squote);
 //free_token.c
 void	free_token_value(t_token *token);
 t_token	*do_ft_dellist(t_token **head, t_token *tmp);
 t_token	*ft_dellist(t_token *head, char *target);
 
 //main.c
-int	proper_order(t_token *token);
+int		proper_order(t_token *token);
 t_token	*do_parse(char *str, t_env *env);
 void	minishell(t_env *envp);
-
-
-
-
-
-//// parsing and tokens
-
-// int	proper_order(t_token *token);
-// t_token	*do_parse(char *str, t_env *env);
 
 #endif
