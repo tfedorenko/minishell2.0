@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:36:51 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/07 11:49:36 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/11 17:30:33 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ pid_t	command(t_node *node)
 {
 	pid_t	pid;
 
+	signals_function_cat();
 	pid = fork();
 	if (pid == ERROR)
 		exit_error("fork error", 1);
@@ -86,9 +87,10 @@ void	execute(t_node *process)
 	{
 		while (process)
 		{
-			//SIGNALS HERE
 			if (process->type == CMD && ++nb_child)
+			{
 				pid = command(process);
+			}
 			process = process->next;
 		}
 		wait_child(nb_child, pid);

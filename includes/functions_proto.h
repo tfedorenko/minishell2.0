@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   functions_proto.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:46:21 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/09 11:05:17 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/11 16:18:31 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef FUNCTIONS_PROTO_H
+# define FUNCTIONS_PROTO_H
+
+# include "minishell.h"
 
 // checker.c
-char **path_to_env(t_node *node);
+char 	**path_to_env(t_node *node);
 char	*set_command_path(char *command, char **env);
 
 //execution_utils.c
@@ -144,15 +147,22 @@ void	eof_exit(t_env *envp);
 
 //signal
 //signal.c
-void	sigquit(int signal);
-void	child_sig_int(int signal);
-void sig_int(int signal);
-void	heredoc_sig_int(int signal);
+// void	sigquit(int signal);
+// void	child_sig_int(int signal);
+// void sig_int(int signal);
+// void	heredoc_sig_int(int signal); 
+void	signals_function(void);
+void	sigint_handler(int sig);
+void	signals_function_cat(void);
+void	sig_handler_cat(int sig);
+// void	print_prompt(char *text);
 
 //parse_utils
 //parse_check.c
 void	check_quote(char target, int *sq, int *dq);
 int	check_duple_sep(char *token, int pos);
+t_token	*join_list_back(t_token *pos, int sep_size, int *index, int size);
+t_token	*join_list_center(t_token *pos, int sep_size, int *index, int size);
 //parse_error.c
 t_token *open_quote_err(t_token *head);
 int print_syntax_error(t_token **token, const char *msg);
@@ -171,8 +181,8 @@ t_node	*get_exec_unit(t_node *head, t_token **token,
 t_node	*exec_handle_node(t_token **token, t_env *envp);
 //expand.c
 char	*ft_strjoin_free_s1(char *s1, char *s2);
-// static void	set_expanded_value(t_token *token,
-// 		char *replaced, int start, int *index);
+void	set_expanded_value(t_token *token,
+		char *replaced, int start, int *index);
 void	expand_home_var(t_token *tmp, t_env *env, int *index);
 void	expand_env_var(t_token *tmp, t_env *env, int *index);
 t_token	*expand(t_token *token, t_env *env);
@@ -214,3 +224,14 @@ t_token	*ft_dellist(t_token *head, char *target);
 int	proper_order(t_token *token);
 t_token	*do_parse(char *str, t_env *env);
 void	minishell(t_env *envp);
+
+
+
+
+
+//// parsing and tokens
+
+// int	proper_order(t_token *token);
+// t_token	*do_parse(char *str, t_env *env);
+
+#endif

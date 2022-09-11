@@ -3,19 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+         #
+#    By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/03 16:27:01 by rkultaev          #+#    #+#              #
-#    Updated: 2022/09/09 12:19:28 by rkultaev         ###   ########.fr        #
+#    Updated: 2022/09/11 13:46:43 by tfedoren         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=			minishell
+NAME							=			minishell
 
-CC				=			gcc
-CFLAGS			=			-Werror -Wextra -Wall
-RM				=			rm -f
-INCLUDES		=			-I ./includes -I $(HOME)/goinfre/.brew/opt/readline/include/
+CC								=			gcc
+CFLAGS							=			-Werror -Wextra -Wall
+RM								=			rm -f
+INCLUDES						=			-I ./includes -I $(HOME)/goinfre/.brew/opt/readline/include/
 
 # UTILS				=			sources/utils
 # BUILTIN			=			sources/builtins
@@ -25,59 +25,65 @@ INCLUDES		=			-I ./includes -I $(HOME)/goinfre/.brew/opt/readline/include/
 # TOKEN				=			sources/token
 # PARSING			=			sources/parsing
 
-SRCS_DIR			=			./sources/
-OBJS_DIR			=			./objects/
-LIBFT				=			./libft_minishell
+SRCS_DIR						=			./sources/
+OBJS_DIR						=			./objects/
+LIBFT							=			./libft_minishell
 # LIBFT_HEADERS		=			./libft_minishell/
 # LIBFT_FLAGS		=			lft -L$(LIBFT_DIR) $(LIBFT_HEADERS)
 
-SRC_BUILTINS_DIR	=			$(SRCS_DIR)builtins/
-SRC_BUILTINS		=			cd.c echo.c env.c exit.c export.c export_utils.c getenv.c \
-								pwd.c unset.c is_builtin.c builtin_utils.c
+SRC_BUILTINS_DIR				=			$(SRCS_DIR)builtins/
+SRC_BUILTINS					=			cd.c echo.c env.c exit.c export.c export_utils.c getenv.c \
+											pwd.c unset.c is_builtin.c builtin_utils.c
 
-SRC_EXECUTION_DIR	=			$(SRCS_DIR)execution/
-SRC_EXECUTION		=			checker.c eof_exit.c error.c  execution_utils.c \
-								execve.c execution.c
+SRC_EXECUTION_DIR				=			$(SRCS_DIR)execution/
+SRC_EXECUTION					=			checker.c eof_exit.c error.c  execution_utils.c \
+											execve.c execution.c
 
-SRC_FD_DIR			=			$(SRCS_DIR)fd/
-SRC_FD				=			heredoc_fd.c heredoc_handle_tmp_files.c \
-								fd_delimiter_and_pipe.c launch_fd.c prepare_cmd_fd.c \
-								set_in_out_fds.c
+SRC_FD_DIR						=			$(SRCS_DIR)fd/
+SRC_FD							=			heredoc_fd.c heredoc_handle_tmp_files.c \
+											fd_delimiter_and_pipe.c launch_fd.c prepare_cmd_fd.c \
+											set_in_out_fds.c
 
-SRC_INIT_DIR		=			$(SRCS_DIR)init/
-SRC_INIT			=			args_init.c env_init_arr.c env_init.c node_init.c \
-								fd_command_init.c
+SRC_INIT_DIR					=			$(SRCS_DIR)init/
+SRC_INIT						=			args_init.c env_init_arr.c env_init.c node_init.c \
+											fd_command_init.c
 
-SRC_PARSING_DIR		=			$(SRCS_DIR)parsing/
-SRC_PARSING			=			parse_check.c parse_error.c search_env.c
+# SRC_PARSING_DIR		=			$(SRCS_DIR)parsing/
+# SRC_PARSING			=			parse_check.c parse_error.c search_env.c
 
-SRC_SIGNALS_DIR		=			$(SRCS_DIR)signals/
-SRC_SIGNALS			=			signals.c
+SRC_TOKENS_AND_PARSING_DIR		=			$(SRCS_DIR)tokens_and_parsing/
+SRC_TOKENS_AND_PARSING	=					add_type.c do_parse.c expand.c handle_node.c helpers_env.c \
+											helpers.c helpers2.c parsing_checks.c parsing_errors.c \
+											split_by_sep.c token_order.c  trim_quote.c trim_space.c 
 
-SRC_TOKEN_DIR		=			$(SRCS_DIR)token/
-SRC_TOKEN			=			node_init_exec.c expand.c reorder_token.c split_by_sep.c \
+SRC_SIGNALS_DIR					=			$(SRCS_DIR)signals/
+SRC_SIGNALS						=			signals_signals.c
+
+# SRC_TOKEN_DIR		=			$(SRCS_DIR)token/
+# SRC_TOKEN			=			node_init_exec.c expand.c reorder_token.c split_by_sep.c \
 								token_utils.c token.c trim.c
 
-SRC_UTILS_DIR		=			$(SRCS_DIR)utils/
-SRC_UTILS			=			define_env_category.c free.c free_token.c free_node.c open_close_fds.c
+SRC_UTILS_DIR					=			$(SRCS_DIR)utils/
+SRC_UTILS						=			define_env_category.c free.c free_token.c free_node.c open_close_fds.c
 
 
 
-SRCS					=			$(SRCS_DIR)main.c \
-								$(addprefix $(SRC_BUILTINS_DIR), $(SRC_BUILTINS)) \
-								$(addprefix $(SRC_EXECUTION_DIR), $(SRC_EXECUTION)) \
-								$(addprefix $(SRC_FD_DIR), $(SRC_FD)) \
-								$(addprefix $(SRC_INIT_DIR), $(SRC_INIT)) \
-								$(addprefix $(SRC_PARSING_DIR), $(SRC_PARSING)) \
-								$(addprefix $(SRC_SIGNALS_DIR), $(SRC_SIGNALS)) \
-								$(addprefix $(SRC_TOKEN_DIR), $(SRC_TOKEN)) \
-								$(addprefix $(SRC_UTILS_DIR), $(SRC_UTILS)) \
+SRCS							=			$(SRCS_DIR)main.c \
+										$(addprefix $(SRC_BUILTINS_DIR), $(SRC_BUILTINS)) \
+										$(addprefix $(SRC_EXECUTION_DIR), $(SRC_EXECUTION)) \
+										$(addprefix $(SRC_FD_DIR), $(SRC_FD)) \
+										$(addprefix $(SRC_INIT_DIR), $(SRC_INIT)) \
+										$(addprefix $(SRC_TOKENS_AND_PARSING_DIR), $(SRC_TOKENS_AND_PARSING)) \
+										$(addprefix $(SRC_SIGNALS_DIR), $(SRC_SIGNALS)) \
+										$(addprefix $(SRC_UTILS_DIR), $(SRC_UTILS)) \
+
+										
 
 # SRCS				=			$(addprefix $(SRCS_DIR), $(SRC))
 
-OBJS				=			$(patsubst $(SRCS_DIR)%.c, $(OBJS_DIR)%.o, $(SRCS))
+OBJS							=			$(patsubst $(SRCS_DIR)%.c, $(OBJS_DIR)%.o, $(SRCS))
 
-LDFLAGS				=			-L $(HOME)/goinfre/.brew/opt/readline/lib/ -lreadline
+LDFLAGS							=			-L $(HOME)/goinfre/.brew/opt/readline/lib/ -lreadline
 
 .PHONY	:	all
 all		:	$(NAME)

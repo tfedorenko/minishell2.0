@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:59:20 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/09 12:18:09 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:54:38 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ t_env	*unset_env(t_env *env, char *key)
 				env = tmp->next;
 			freedom(tmp->key);
 			freedom(tmp->value);
-			freedom(env);
+			freedom(tmp);
+			return (env);
 		}
 		prev = tmp;
 		tmp = tmp->next;

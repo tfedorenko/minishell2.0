@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:24:03 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/07 13:02:54 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/10 20:53:20 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ char	*set_command_path(char *command, char **paths)
 	int		i;
 	int		fd;
 
-	i = -1;
-	// if (ft_strchr(command, '/'))
-	// 	return (command);
-	while (paths && paths[++i])
+	i = 0;
+	if (ft_strchr(command, '/'))
+		return (command);
+	while (paths && paths[i++])
 	{
 		tmp_cmd = ft_strjoin("/", command);
 		command_path_with_slash = ft_strjoin(paths[i], tmp_cmd);

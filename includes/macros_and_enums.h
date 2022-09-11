@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros_and_enums.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 16:07:59 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/08 13:00:38 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/11 12:21:05 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@
 # define HEREDOC	6
 # define BREAK		7
 # define FAIL		8
+
 
 typedef enum e_return
 {

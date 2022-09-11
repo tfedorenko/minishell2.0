@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_in_out_fds.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:43:30 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/09 08:27:39 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/09 18:06:44 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	set_fd_input(t_node *head, t_node *file)
 		file->fd[IN] = fetch_heredoc_fd(file);
 	if (file->type == HEREDOC && glob_status == ERR_ETC)
 		free_all_nodes(head);
-	return (SUCCESS);
+	return (ERROR);
 }
 
 int	set_fd_output(t_node *head, t_node *file)
