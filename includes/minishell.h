@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:25:24 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/11 19:01:32 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/12 21:30:14 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@
 # include <termios.h>
 
 # include "libft.h"
-// # include "ft_printf.h"
-// # include <get_next_line.h>
 # include "macros_and_enums.h"
 # include "execution_struct.h"
 # include "functions_proto.h"

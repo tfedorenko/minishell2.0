@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 23:06:48 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/12 20:35:59 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/12 21:19:09 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,10 @@ void	execute(t_node *process)
 	{
 		if (ft_strcmp(process->command[0], "exit"))
 			glob_status = 0;
-		printf("fd out: %d\n", process->fd[OUT]);
 		builtin(SINGLE_CMD, process);
 	}
 	else
 	{
-		printf("fd out2: %d\n", process->fd[OUT]);
 		while (process)
 		{
 			if (process->type == CMD && ++child_counter)

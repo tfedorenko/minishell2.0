@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_node.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 20:18:00 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/11 15:52:01 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/12 21:27:11 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_node	*add_node_by_type(t_node **head, t_token **token, \
 
 t_node	*get_exec_unit(t_node *head, t_token **token, t_token **tmp, \
 															t_env *envp);
-// t_node	*add_node_arr(t_node **head, t_token *target, int iter, t_env *envp);
 
 t_node	*exec_handle_node(t_token **token, t_env *envp)
 {
@@ -121,23 +120,3 @@ t_node	*add_node_by_type(t_node **head, t_token **token, \
 	(*tmp) = (*tmp)->next;
 	return (*head);
 }
-
-// t_node	*add_node_arr(t_node **head, t_token *target, int iter, t_env *envp)
-// {
-// 	t_node	*new;
-// 	t_node	*tmp;
-
-// 	new = init_node(target->type, iter, envp);
-// 	new = add_command_arr(new, target, iter);
-// 	if (head == NULL)
-// 		*head = new;
-// 	else
-// 	{
-// 		tmp = *head;
-// 		while (tmp->next) 
-// 			tmp = tmp->next;
-// 		tmp->next = new;
-// 		new->prev = tmp;
-// 	}
-// 	return (*head);
-// }

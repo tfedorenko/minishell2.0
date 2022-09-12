@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:43:30 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/12 19:26:36 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/12 21:15:26 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	set_fd_input(t_node *head, t_node *file)
 	}
 	else
 		file->fd[IN] = fetch_heredoc_fd(file);
-	// if (file->type == HEREDOC && WEXITSTATUS(glob_status) == ERR_ETC)
-	if (file->type == HEREDOC && (glob_status == ERR_ETC || file->fd[IN] == ERROR))
+	if (file->type == HEREDOC && (glob_status == ERR_ETC
+			|| file->fd[IN] == ERROR))
 		return (ERROR);
 	(void)head;
 	return (SUCCESS);
@@ -44,8 +44,6 @@ int	set_fd_output(t_node *head, t_node *file)
 						O_WRONLY | O_APPEND, 0666);
 		if (file->fd[OUT] == ERROR)
 		{
-			// free_all_nodes(head);
-			// return (0);
 			return (ERROR);
 		}
 	}
@@ -55,8 +53,6 @@ int	set_fd_output(t_node *head, t_node *file)
 						O_WRONLY | O_TRUNC, 0666);
 		if (file->fd[OUT] == ERROR)
 		{
-			// free_all_nodes(head);
-			// return (0);
 			return (ERROR);
 		}
 	}
