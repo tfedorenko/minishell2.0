@@ -41,10 +41,10 @@ char	*fetch_heredoc_str(char *heredoc_str, char *read_line)
 
 	tmp = read_line;
 	read_line = ft_strjoin(tmp, "\n");
-	free(tmp);
+	// free(tmp);
 	tmp = heredoc_str;
 	heredoc_str = ft_strjoin(tmp, read_line);
-	free(tmp);
+	// free(tmp);
 	free(read_line);
 	return (heredoc_str);
 }
@@ -57,7 +57,7 @@ int	fetch_heredoc_read_end(int temp_fd, char *heredoc_str)
 	temp_file = temp_files(NULL, GET)->value;
 	write(temp_fd, heredoc_str, ft_strlen(heredoc_str));
 	close(temp_fd);
-	fd = open(temp_file, O_RDONLY);
+	fd = open(temp_file, O_RDONLY, 0666);
 	free(heredoc_str);
 	if (glob_status == ERR_ETC)
 	{
@@ -68,26 +68,26 @@ int	fetch_heredoc_read_end(int temp_fd, char *heredoc_str)
 	return (fd);
 }
 
-static void	pre_heredoc(char *readline_str, char *heredoc_str, t_node *node)
+static void	pre_heredoc(char *readline_str, char **heredoc_str, t_node *node)
 {
-	int		fd;
-
-	heredoc_str = ft_strdup("");
-	glob_status = 0;
-	fd = open_temp_file();
-
 	while (1)
 	{
 		readline_str = readline("> ");
 		if (!readline_str)
 			exit(1);
+		if (glob_status == ERR_ETC)
+		{
+			free(readline_str);
+			free(*heredoc_str);
+		}
 		if (ft_strcmp(readline_str, node->command[1]) == 0)
 		{
 			free(readline_str);
-			exit(1);
+			break ;
 		}
-		heredoc_str = fetch_heredoc_str(heredoc_str, readline_str);
+		*heredoc_str = fetch_heredoc_str(*heredoc_str, readline_str);
 	}
+	free(heredoc_str);
 }
 
 int	fetch_heredoc_fd(t_node *node)
@@ -107,7 +107,7 @@ int	fetch_heredoc_fd(t_node *node)
 	else if (pid == 0)
 	{
 		heredoc_signal_function();
-		pre_heredoc(readline_str, heredoc_str, node);
+		pre_heredoc(readline_str, &heredoc_str, node);
 	}
 	waitpid(pid, &glob_status, 0);
 	signals_function();
