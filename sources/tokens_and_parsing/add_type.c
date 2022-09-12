@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_type.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:08:37 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/11 12:37:47 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/12 19:29:31 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	add_redir_type(t_token *token)
 	if (token->value[0] == '>')
 	{
 		token->type = TRUNC;
-		if (token->value[1] == '<')
+		if (token->value[1] == '>')
 			token->type = APPEND;
 	}
 	else if (token->value[0] == '<')

@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 13:14:29 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/11 19:02:02 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/12 19:01:56 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	minishell(t_env *envp)
 			execute(node);
 		free_all_token(token);
 		free_all_nodes(node);
-		temp_files(NULL, DEL);
+		// temp_files(NULL, DEL);
 	}
 }
 

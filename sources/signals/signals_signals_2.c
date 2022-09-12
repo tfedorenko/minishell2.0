@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals_signals_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 22:42:14 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/11 22:42:47 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/12 17:40:20 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void heredoc_signal_handler(int sig)
 {
 	if (sig == SIGINT)
-		exit(1);
+		exit(EXIT_FAILURE);
 }
 
 void heredoc_signal_function(void)

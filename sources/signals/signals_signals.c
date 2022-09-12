@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals_signals.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 20:52:26 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/11 22:42:40 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:34:57 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

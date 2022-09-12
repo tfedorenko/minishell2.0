@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:42:13 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/11 19:18:53 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/12 19:09:45 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ int	set_delimiter_fd(t_node *head)
 		if (tmp->type == INPUT || tmp->type == HEREDOC)
 		{
 			type = tmp->type;
-			if (set_fd_input(head, tmp) == SUCCESS \
-				|| (type == HEREDOC && glob_status == ERR_ETC))
-				return (SUCCESS);
+			if (set_fd_input(head, tmp) == ERROR)
+				return (ERROR);
 		}
-		else if ((tmp->type == TRUNC || tmp->type == APPEND) \
-				&& set_fd_output(head, tmp) == SUCCESS)
-			return (SUCCESS);
+		else if (tmp->type == TRUNC || tmp->type == APPEND)
+		{
+			if (set_fd_output(head, tmp) == ERROR)
+				return (ERROR);
+		}
 		else if (tmp->type == PIPE)
 		{
 			pipe(tmp->fd);
@@ -39,5 +40,5 @@ int	set_delimiter_fd(t_node *head)
 		}
 		tmp = tmp->next;
 	}
-	return (1);
+	return (SUCCESS);
 }

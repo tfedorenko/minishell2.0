@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 10:26:42 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/11 19:20:38 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/12 19:18:39 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ t_node	*set_command_pipe(t_node *prev, t_node *tmp, t_node *command)
 	prev->fd[OUT] = tmp->fd[OUT];
 	if (command && command->fd[OUT] == 1)
 		command->fd[OUT] = tmp->fd[OUT];
-	if (!command || command->type == FAIL)
+	if ((!command || command->type == FAIL) && tmp->fd[OUT] == ERROR)
 		close(tmp->fd[OUT]);
 	return (NULL);
 }
 
 void	set_command_output(t_node *tmp, t_node *command)
 {
-	if (tmp->next && tmp->next->type == PIPE)
+	if (tmp->next && tmp->next->type == PIPE && tmp->next->fd[OUT] == ERROR)
 		my_close(tmp->next->fd[OUT]);
 	if (command)
 		command->fd[OUT] = tmp->fd[OUT];

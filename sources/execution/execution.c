@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 23:06:48 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/11 23:06:49 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:35:59 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../../includes/minishell.h"
 
@@ -18,9 +16,9 @@ extern int	glob_status;
 
 static void	fd_descriptor(t_node *node)
 {
-	if (node->fd[IN] != 0)
+	if (node->fd[IN] != 0 && node->fd[IN] != ERROR)
 		my_close(node->fd[IN]);
-	if (node->fd[OUT] != 1)
+	if (node->fd[OUT] != 1 && node->fd[OUT] != ERROR)
 		my_close(node->fd[OUT]);
 }
 
@@ -38,7 +36,7 @@ pid_t	command(t_node *node)
 		dup2(node->fd[IN], 0);
 		dup2(node->fd[OUT], 1);
 		close_pipes(node);
-		if (is_builtin(node))
+		if (is_builtin(node) == SUCCESS)
 			builtin(MULTI_CMD, node);
 		else
 			launch_execve(node);
@@ -82,14 +80,16 @@ void	execute(t_node *process)
 	pid_t	pid;
 
 	child_counter = 0;
-	if (is_single_command(process) && is_builtin(process))
+	if (is_single_command(process) == SUCCESS && is_builtin(process) == SUCCESS)
 	{
 		if (ft_strcmp(process->command[0], "exit"))
 			glob_status = 0;
+		printf("fd out: %d\n", process->fd[OUT]);
 		builtin(SINGLE_CMD, process);
 	}
 	else
 	{
+		printf("fd out2: %d\n", process->fd[OUT]);
 		while (process)
 		{
 			if (process->type == CMD && ++child_counter)

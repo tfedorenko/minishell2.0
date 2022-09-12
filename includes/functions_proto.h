@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions_proto.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:46:21 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/11 21:14:04 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:13:00 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ t_list	*get_files(t_list *head);
 t_list	*temp_files(char *file_name, int command);
 
 //heredoc_fd.c
-int		open_temp_file(void);
-char	*fetch_heredoc_str(char *heredoc_str, char *read_line);
-int		fetch_heredoc_read_end(int temp_fd, char *heredoc_str);
+// int		open_temp_file(void);
+// char	*fetch_heredoc_str(char *heredoc_str, char *read_line);
+// int		fetch_heredoc_read_end(int temp_fd, char *heredoc_str);
 int		fetch_heredoc_fd(t_node *node);
 
 //init_fd.c

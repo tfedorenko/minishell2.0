@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:43:30 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/11 19:18:12 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/12 19:26:36 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,16 @@ int	set_fd_input(t_node *head, t_node *file)
 			printf("minishell: %s: No such file or directory\n",
 				file->command[1]);
 			glob_status = ERR_ETC;
-			return (1);
+			return (ERROR);
 		}
 	}
 	else
 		file->fd[IN] = fetch_heredoc_fd(file);
-	if (file->type == HEREDOC && glob_status == ERR_ETC)
-		free_all_nodes(head);
-	return (1);
+	// if (file->type == HEREDOC && WEXITSTATUS(glob_status) == ERR_ETC)
+	if (file->type == HEREDOC && (glob_status == ERR_ETC || file->fd[IN] == ERROR))
+		return (ERROR);
+	(void)head;
+	return (SUCCESS);
 }
 
 int	set_fd_output(t_node *head, t_node *file)
@@ -42,8 +44,9 @@ int	set_fd_output(t_node *head, t_node *file)
 						O_WRONLY | O_APPEND, 0666);
 		if (file->fd[OUT] == ERROR)
 		{
-			free_all_nodes(head);
-			return (0);
+			// free_all_nodes(head);
+			// return (0);
+			return (ERROR);
 		}
 	}
 	else if (file->type == TRUNC)
@@ -52,9 +55,11 @@ int	set_fd_output(t_node *head, t_node *file)
 						O_WRONLY | O_TRUNC, 0666);
 		if (file->fd[OUT] == ERROR)
 		{
-			free_all_nodes(head);
-			return (0);
+			// free_all_nodes(head);
+			// return (0);
+			return (ERROR);
 		}
 	}
-	return (1);
+	(void)head;
+	return (SUCCESS);
 }

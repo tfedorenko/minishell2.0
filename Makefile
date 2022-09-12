@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+         #
+#    By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/03 16:27:01 by rkultaev          #+#    #+#              #
-#    Updated: 2022/09/11 22:43:33 by tfedoren         ###   ########.fr        #
+#    Updated: 2022/09/12 18:38:11 by rkultaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME							=			minishell
 
 CC								=			gcc
-CFLAGS							=			-Werror -Wextra -Wall
+CFLAGS							=			-Werror -Wextra -Wall -g
 RM								=			rm -f
 INCLUDES						=			-I ./includes -I $(HOME)/goinfre/.brew/opt/readline/include/
 

@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 15:45:17 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/08 21:08:38 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:27:20 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	is_single_command(t_node *head)
 {
 	if (!head->next)
-		return (1);
-	return (0);
+		return (SUCCESS);
+	return (ERROR);
 }
 
 void	my_dup2(int fd1, int fd2)
