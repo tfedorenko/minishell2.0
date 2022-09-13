@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_by_sep.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 22:59:18 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/11 12:38:21 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/13 20:16:35 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

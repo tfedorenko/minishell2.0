@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   trim_space.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 21:04:47 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/10 22:54:27 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/13 19:37:08 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

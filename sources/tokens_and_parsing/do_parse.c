@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 03:47:35 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/10 23:02:49 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/13 20:33:08 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

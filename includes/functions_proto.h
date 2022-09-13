@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:46:21 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/12 18:13:00 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/13 18:54:46 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,8 +165,8 @@ int		print_syntax_error(t_token **token, const char *msg);
 int		error_handler(t_token **token, t_token **tmp);
 char	*search_env(t_env *env, char *target);
 t_node	*init_node(int type, int size, t_env *envp);
-t_node	*add_node_arr(t_node **head, t_token *token, int iter, t_env *envp);
-t_node	*add_node_by_type(t_node **head,
+t_node	*add_node_arr(t_node *head, t_token *token, int iter, t_env *envp);
+t_node	*add_node_by_type(t_node *head,
 			t_token **token, t_token **tmp, t_env *envp);
 t_node	*get_exec_unit(t_node *head, t_token **token,
 			t_token **tmp, t_env *envp);

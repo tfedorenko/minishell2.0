@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 19:59:17 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/13 13:13:32 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:44:39 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ t_env	*sort_envp(t_env *env)
 			if (ft_strcmp(left->key, right->key) > 0)
 				swap_env(left, right);
 			right = right->next;
-		// printf("%s\n", right->value);
 		}
 		tmp = tmp->next;
 	}

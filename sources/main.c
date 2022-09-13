@@ -6,13 +6,13 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 13:14:29 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/13 12:54:18 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/13 20:30:03 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-extern int	g_stat;
+int	glob_status;
 
 void	minishell(t_env *envp)
 {
@@ -52,7 +52,7 @@ int	main(int argc, char **argv, char **env)
 	argc = 0;
 	argv = 0;
 	envp = env_init(&head, env);
-	g_stat = 0;
+	glob_status = 0;
 	while (1)
 	{
 		signals_function();

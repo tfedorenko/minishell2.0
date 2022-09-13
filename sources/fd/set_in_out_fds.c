@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:43:30 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/12 21:15:26 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:31:18 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ int	set_fd_output(t_node *head, t_node *file)
 		file->fd[OUT] = open(file->command[1], O_CREAT | \
 						O_WRONLY | O_TRUNC, 0666);
 		if (file->fd[OUT] == ERROR)
-		{
 			return (ERROR);
-		}
 	}
 	(void)head;
 	return (SUCCESS);

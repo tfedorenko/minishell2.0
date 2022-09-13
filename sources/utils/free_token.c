@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 11:18:57 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/08 14:43:31 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/13 20:06:23 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	free_token_value(t_token *token)
 {
-	free(token->value);
-	free(token);
+	if (token->value)
+		free(token->value);
+	if (token)
+		free(token);
 }
 
 t_token	*do_ft_dellist(t_token **head, t_token *tmp)

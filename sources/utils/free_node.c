@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 14:36:21 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/12 19:56:40 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/13 17:03:49 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,12 @@
 void	free_all_nodes(t_node *head)
 {
 	t_node	*tmp;
-	// t_node	*target_file
-	// t_node	*target_file;
 	int		i;
 
 	if (!head)
 		return ;
-	// tmp = head;
 	while (head)
 	{
-		// target_file = tmp;
 		if (head->fd[IN] != ERROR && head->fd[IN] != 0)
 			close(head->fd[IN]);
 		if (head->fd[OUT] != ERROR && head->fd[OUT] != 1)

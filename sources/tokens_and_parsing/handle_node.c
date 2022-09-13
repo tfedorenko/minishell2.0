@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 20:18:00 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/12 21:27:11 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/13 18:55:56 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_node	*exec_handle_node(t_token **token, t_env *envp);
 t_node	*add_command_arr(t_node *new, t_token *target, int iter);
 
-t_node	*add_node_by_type(t_node **head, t_token **token, \
+t_node	*add_node_by_type(t_node *head, t_token **token, \
 								t_token **tmp, t_env *envp );
 
 t_node	*get_exec_unit(t_node *head, t_token **token, t_token **tmp, \
@@ -59,11 +59,11 @@ t_node	*get_exec_unit(t_node *head, t_token **token, t_token **tmp, \
 			(*tmp) = (*tmp)->next;
 			i++;
 		}
-		head = add_node_arr(&head, start, i, envp);
+		head = add_node_arr(head, start, i, envp);
 	}
 	else
 	{
-		head = add_node_by_type(&head, token, tmp, envp);
+		head = add_node_by_type(head, token, tmp, envp);
 		if (!head)
 			return (NULL);
 	}
@@ -91,7 +91,7 @@ t_node	*add_command_arr(t_node *new, t_token *target, int iter)
 	return (new);
 }
 
-t_node	*add_node_by_type(t_node **head, t_token **token, \
+t_node	*add_node_by_type(t_node *head, t_token **token, \
 								t_token **tmp, t_env *envp )
 {
 	t_token	*start;
@@ -103,20 +103,20 @@ t_node	*add_node_by_type(t_node **head, t_token **token, \
 		is_error = error_handler(token, tmp);
 		if (is_error == ERROR)
 		{
-			free_all_nodes(*head);
+			free_all_nodes(head);
 			return (NULL);
 		}
 	}
 	if ((*tmp)->type == PIPE)
-		*head = add_node_arr(head, start, 1, envp);
+		head = add_node_arr(head, start, 1, envp);
 	else if ((*tmp)->type == BREAK)
-		*head = add_node_arr(head, start, 1, envp);
+		head = add_node_arr(head, start, 1, envp);
 	else if ((*tmp)->type == TRUNC || (*tmp)->type == APPEND || \
 					(*tmp)->type == INPUT || (*tmp)->type == HEREDOC)
 	{
-		*head = add_node_arr(head, start, 2, envp);
+		head = add_node_arr(head, start, 2, envp);
 		(*tmp) = (*tmp)->next;
 	}
 	(*tmp) = (*tmp)->next;
-	return (*head);
+	return (head);
 }

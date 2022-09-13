@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_checks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 21:24:06 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/11 13:44:52 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/13 17:05:25 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	g_stat;
+extern int	glob_status;
 
 void	check_quote(char target, int *sq, int *dq);
 int		chech_duple_sep(char *token, int pos);
@@ -44,7 +44,7 @@ int	check_duple_sep(char *token, int pos)
 		{
 			printf("minishell: syntax error unexpected token '%c%c'\n", \
 							token[pos], token[pos]);
-			g_stat = ERR_SYNTAX;
+			glob_status = ERR_SYNTAX;
 			size = 0;
 		}
 	}

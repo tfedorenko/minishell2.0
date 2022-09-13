@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 18:03:54 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/09 08:10:02 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/13 18:54:04 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ t_node	*add_command_node_arr(t_node *new_node, t_token *val, int iter)
 		if (val->value != NULL)
 		{
 			new_node->command[j] = ft_strdup(val->value);
-			// printf("%s\n", val->value);
 			j++;
 		}
 		val = val->next;
@@ -50,22 +49,22 @@ t_node	*add_command_node_arr(t_node *new_node, t_token *val, int iter)
 	return (new_node);
 }
 
-t_node	*add_node_arr(t_node **head, t_token *token, int iter, t_env *envp)
+t_node	*add_node_arr(t_node *head, t_token *token, int iter, t_env *envp)
 {
 	t_node	*new_node;
 	t_node	*tmp;
 
 	new_node = init_node(token->type, iter, envp);
 	new_node = add_command_node_arr(new_node, token, iter);
-	if (*head == NULL)
-		*head = new_node;
+	if (head == NULL)
+		head = new_node;
 	else
 	{
-		tmp = *head;
+		tmp = head;
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new_node;
 		new_node->prev = tmp;
 	}
-	return (*head);
+	return (head);
 }

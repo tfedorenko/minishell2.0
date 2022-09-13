@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 21:11:23 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/12 15:51:21 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/13 20:33:59 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_token	*add_token(t_token *head, char *value)
 	t_token	*tmp;	
 
 	new = (t_token *)malloc(sizeof(t_token));
+	if (!new)
+		return (NULL);
 	new->value = value;
 	new->next = NULL;
 	new->prev = NULL;
@@ -44,30 +46,14 @@ t_token	*add_token(t_token *head, char *value)
 	return (head);
 }
 
-// void	free_all_token(t_token *head)
-// {
-// 	t_token	*target;
-// 	t_token	*tmp;
-
-// 	if (!head)
-// 		return ;
-// 	tmp = head;
-// 	while (tmp)
-// 	{
-// 		target = tmp;
-// 		if (target->value)
-// 			free(target->value);
-// 		tmp = tmp->next;
-// 		free(target);
-// 	}
-// }
-
 t_token	*join_list_center(t_token *pos, int sep_size, int *index, int size)
 {
 	t_token	*separated;
 	char	*tmp;
 
 	separated = malloc(sizeof(t_token) * sep_size);
+	if (!separated)
+		return (NULL);
 	separated->value = ft_substr(pos->value, *index, sep_size);
 	separated->next = pos->next;
 	pos->next->prev = separated;
@@ -75,9 +61,14 @@ t_token	*join_list_center(t_token *pos, int sep_size, int *index, int size)
 	separated->prev = pos;
 	pos = pos->next;
 	separated = malloc(sizeof(t_token));
+	if (!separated)
+		return (NULL);
 	separated->value = ft_substr(pos->prev->value, *index + sep_size, size);
 	separated->next = pos->next;
 	pos->next->prev = separated;
+
+	pos->next = separated;
+	
 	separated->prev = pos;
 	tmp = pos->prev->value;
 	pos->prev->value = ft_substr(tmp, 0, *index);
@@ -93,6 +84,8 @@ t_token	*join_list_back(t_token *pos, int sep_size, int *index, int size)
 	char	*tmp;
 
 	separated = malloc(sizeof(t_token));
+	if (!separated)
+		return (NULL);
 	separated->value = ft_substr(pos->value, *index, sep_size);
 	pos->next = separated;
 	separated->prev = pos;
