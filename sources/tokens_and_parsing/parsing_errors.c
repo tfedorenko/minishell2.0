@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 21:36:13 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/13 21:26:30 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:43:48 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,64 +32,39 @@ int	print_syntax_error(t_token **token, const char *msg)
 	glob_status = ERR_SYNTAX;
 	free_all_token(*token);
 	*token = NULL;
-	return (-1);
+	return (ERROR);
 }
 
-static int delimit_type(t_token **token, t_token **tmp)
+int error_handler_2(t_token **token, t_token **tmp)
 {
-	// if ((*tmp)->type == INPUT && ((*tmp)->next->type == INPUT))
-	// 	return (print_syntax_error(token, \
-	// 				"syntax error near unexpected token `<'\n"));
-	// else if ((*tmp)->type == TRUNC && ((*tmp)->next->type == TRUNC))
-	// 	return (print_syntax_error(token, \
-	// 				"syntax error near unexpected token `>'\n"));
-	// else if ((*tmp)->type == HEREDOC && ((*tmp)->next->type == HEREDOC))
-	// 	return (print_syntax_error(token, \
-	// 				"syntax error near unexpected token `<<'\n"));
-	// else if ((*tmp)->type == APPEND && ((*tmp)->next->type == APPEND))
-	// 	return (print_syntax_error(token, \
-	// 				"syntax error near unexpected token `>>'\n"));
-		if ((*tmp)->next->type == INPUT)
-		return (print_syntax_error(token, \
-					"syntax error near unexpected token `<'\n"));
-	else if ((*tmp)->next->type == TRUNC)
-		return (print_syntax_error(token, \
-					"syntax error near unexpected token `>'\n"));
-	else if ((*tmp)->next->type == HEREDOC)
-		return (print_syntax_error(token, \
-					"syntax error near unexpected token `<<'\n"));
-	else if ((*tmp)->next->type == APPEND)
-		return (print_syntax_error(token, \
-					"syntax error near unexpected token `>>'\n"));
-		return (1);
+	if (((*tmp)->next) && (*tmp)->next->type == INPUT)
+		return (print_syntax_error(token, ERR_PRT_INPUT));
+	else if (((*tmp)->next) && (*tmp)->next->type == TRUNC)
+		return (print_syntax_error(token, ERR_PRT_TRC));
+	else if (((*tmp)->next) && (*tmp)->next->type == HEREDOC)
+		return (print_syntax_error(token, ERR_PRT_HRDC));
+	else if (((*tmp)->next) && (*tmp)->next->type == APPEND)
+		return (print_syntax_error(token, ERR_PRT_APP));
+	else if ((*tmp)->next == NULL &&
+			((*tmp)->type == TRUNC || (*tmp)->type == APPEND ||
+			 (*tmp)->type == INPUT || (*tmp)->type == HEREDOC))
+		return (print_syntax_error(token, ERR_PRT_NL));
+	return (SUCCESS);
 }
 
-int	error_handler(t_token **token, t_token **tmp)
+int error_handler(t_token **token, t_token **tmp)
 {
 	if ((*tmp)->type == PIPE)
 	{
-		if ((!(*tmp)->prev || (*tmp)->prev->type != CMD) || \
-				(!(*tmp)->next || (*tmp)->next->type == PIPE))
-			return (print_syntax_error(token, \
-					"syntax error near unexpected token `|'\n"));
+		if ((!(*tmp)->prev || (*tmp)->prev->type != CMD) ||
+			(!(*tmp)->next || (*tmp)->next->type == PIPE))
+			return (print_syntax_error(token, ERR_PRT_PIPE));
 	}
 	else if ((*tmp)->type == BREAK)
 	{
-		if ((!(*tmp)->prev || (*tmp)->prev->type != CMD) || \
-					((*tmp)->next && (*tmp)->next->type == BREAK))
-			return (print_syntax_error(token, \
-					"syntax error near unexpected token `;'\n"));
+		if ((!(*tmp)->prev || (*tmp)->prev->type != CMD) ||
+			((*tmp)->next && (*tmp)->next->type == BREAK))
+			return (print_syntax_error(token, ERR_PRT_BREAK));
 	}
-	// else if (delimit_type(token, tmp))
-	else if ((*tmp)->type == TRUNC || (*tmp)->type == APPEND || \
-					(*tmp)->type == INPUT || (*tmp)->type == HEREDOC)
-	{
-		if (delimit_type(token, tmp) == 9 && ((!(*tmp)->next) || (*tmp)->next->type > 1))
-			
-		// else i.f ((!(*tmp)->next) || (*tmp)->next->type > 1)
-			return (print_syntax_error(token, \
-					"syntax error near unexpected token `newline'\n"));
-	}
-
-	return (1);
+	return (error_handler_2(token, tmp));
 }

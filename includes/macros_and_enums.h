@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 16:07:59 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/12 21:30:02 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:17:48 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@
 # define HEREDOC	6
 # define BREAK		7
 # define FAIL		8
+
+# define ERR_PRT_BREAK	"syntax error near unexpected token `;'\n"
+# define ERR_PRT_PIPE	"syntax error near unexpected token `|'\n"
+# define ERR_PRT_INPUT	"syntax error near unexpected token `<'\n"
+# define ERR_PRT_HRDC	"syntax error near unexpected token `<<'\n"
+# define ERR_PRT_TRC		"syntax error near unexpected token `>'\n"
+# define ERR_PRT_APP		"syntax error near unexpected token `>>'\n"
+# define ERR_PRT_NL		"syntax error near unexpected token `newline'\n"
 
 typedef enum e_return
 {
