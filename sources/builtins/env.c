@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 13:24:04 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/05 11:26:18 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/12 22:35:42 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	give_all_env(t_env *env, int prefix)
 {
-	while (env)
+	while (env && env->key)
 	{
 		if (prefix && !ft_strcmp("_", env->key))
 			env = env->next;
 		else if (prefix && env->value && *env->value)
 			printf("declare -x %s=\"%s\"\n", env->key, env->value);
-		else if (prefix && env->value)
+		else if (prefix && env->next->value)
 			printf ("declare -x %s=\"\"\n", env->key);
 		else if (prefix)
 			printf("declare -x %s\n", env->key);

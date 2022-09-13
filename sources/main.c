@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 13:14:29 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/12 21:09:40 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/13 12:54:18 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	main(int argc, char **argv, char **env)
 	argv = 0;
 	envp = env_init(&head, env);
 	g_stat = 0;
-
 	while (1)
 	{
 		signals_function();

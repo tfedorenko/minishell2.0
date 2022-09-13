@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 19:59:17 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/11 18:14:35 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:13:32 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,15 @@ t_env	*dupl_envp(t_env *envp)
 	t_env	*tmp;
 
 	dupl_envp = dupl_env(envp);
-	if (dupl_envp->key)
+	if (dupl_envp->key && dupl_envp->value)
 	{
 		tmp = dupl_envp;
 		while (envp->next)
 		{
-			printf("%s\n", envp->key);
 			envp = envp->next;
 			tmp->next = (t_env *)malloc(sizeof(t_env));
 			tmp->next->key = ft_strdup(envp->key);
-			if (tmp->next->value)
+			if (envp->value)
 				tmp->next->value = ft_strdup(envp->value);
 			if (tmp->next)
 				tmp->next->next = NULL;
