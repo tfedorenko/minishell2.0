@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 21:36:13 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/13 22:43:48 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/14 08:42:10 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	print_syntax_error(t_token **token, const char *msg)
 	return (ERROR);
 }
 
-int error_handler_2(t_token **token, t_token **tmp)
+int	error_handler_2(t_token **token, t_token **tmp)
 {
 	if (((*tmp)->next) && (*tmp)->next->type == INPUT)
 		return (print_syntax_error(token, ERR_PRT_INPUT));
@@ -45,24 +45,24 @@ int error_handler_2(t_token **token, t_token **tmp)
 		return (print_syntax_error(token, ERR_PRT_HRDC));
 	else if (((*tmp)->next) && (*tmp)->next->type == APPEND)
 		return (print_syntax_error(token, ERR_PRT_APP));
-	else if ((*tmp)->next == NULL &&
-			((*tmp)->type == TRUNC || (*tmp)->type == APPEND ||
-			 (*tmp)->type == INPUT || (*tmp)->type == HEREDOC))
+	else if (((*tmp)->next == NULL) && \
+		((*tmp)->type == TRUNC || (*tmp)->type == APPEND || \
+			(*tmp)->type == INPUT || (*tmp)->type == HEREDOC))
 		return (print_syntax_error(token, ERR_PRT_NL));
 	return (SUCCESS);
 }
 
-int error_handler(t_token **token, t_token **tmp)
+int	error_handler(t_token **token, t_token **tmp)
 {
 	if ((*tmp)->type == PIPE)
 	{
-		if ((!(*tmp)->prev || (*tmp)->prev->type != CMD) ||
+		if ((!(*tmp)->prev || (*tmp)->prev->type != CMD) || \
 			(!(*tmp)->next || (*tmp)->next->type == PIPE))
 			return (print_syntax_error(token, ERR_PRT_PIPE));
 	}
 	else if ((*tmp)->type == BREAK)
 	{
-		if ((!(*tmp)->prev || (*tmp)->prev->type != CMD) ||
+		if ((!(*tmp)->prev || (*tmp)->prev->type != CMD) || \
 			((*tmp)->next && (*tmp)->next->type == BREAK))
 			return (print_syntax_error(token, ERR_PRT_BREAK));
 	}
