@@ -8,7 +8,7 @@
 			"type": "lldb",
 			"request": "launch",
 			"name": "Debug",
-			"program": "/Users/rkultaev/42_Wolfsburg/minishell_2.0/minishell",
+			"program": "/Users/rkultaev/42_Wolfsburg/minishell2.0/minishell",
 			"args": [],
 			"cwd": "${workspaceFolder}"
 		}

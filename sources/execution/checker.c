@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:24:03 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/14 17:16:44 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/14 21:52:10 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*set_command_path(char *command, char **paths)
 		free(tmp_cmd);
 		free(command_path_with_slash);
 	}
-	free(tmp_cmd);
+	// free(tmp_cmd);
 	free(command_path_with_slash);
 	return (NULL);
 }

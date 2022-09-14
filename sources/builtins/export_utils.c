@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 19:59:17 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/13 13:44:39 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/14 22:52:19 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,17 @@ t_env	*dupl_envp(t_env *envp)
 	if (dupl_envp->key && dupl_envp->value)
 	{
 		tmp = dupl_envp;
-		while (envp->next)
+		while (envp && tmp)
 		{
-			envp = envp->next;
 			tmp->next = (t_env *)malloc(sizeof(t_env));
-			tmp->next->key = ft_strdup(envp->key);
+			if (envp->key)
+				tmp->next->key = ft_strdup(envp->key);
 			if (envp->value)
 				tmp->next->value = ft_strdup(envp->value);
 			if (tmp->next)
 				tmp->next->next = NULL;
 			tmp = tmp->next;
+			envp = envp->next;
 		}
 	}
 	return (dupl_envp);

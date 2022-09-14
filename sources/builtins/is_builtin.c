@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 17:29:00 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/12 21:32:06 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/14 22:27:03 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	builtin(int single_command, t_node *node)
 
 int	is_builtin(t_node *node)
 {
+	if (!node->command[0])
+		return (ERROR);
 	if (!ft_strcmp(node->command[0], "echo") \
 		|| !ft_strcmp(node->command[0], "cd") \
 		|| !ft_strcmp(node->command[0], "pwd") \

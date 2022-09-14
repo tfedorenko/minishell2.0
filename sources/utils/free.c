@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 11:22:18 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/12 20:25:49 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/14 22:59:39 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,15 @@ void	freedom(void *str)
 
 void	free_dupl_env(t_env *env)
 {
+	t_env	*tmp;
+
 	while (env)
 	{
 		freedom(env->key);
 		freedom(env->value);
+		tmp = env->next;
 		freedom(env);
-		env = env->next;
+		env = tmp;
 	}
 	freedom(env);
 }
