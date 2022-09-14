@@ -6,7 +6,7 @@
 /*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:35:01 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/11 19:31:16 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/14 17:36:32 by rkultaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	set_expanded_value(t_token *token, char *replaced, int start, \
 	if (!replaced)
 		replaced = ft_strdup("");
 	head = ft_substr(token->value, 0, start - 1);
-	tail = ft_substr(token->value, *index, ft_strlen(token->value));
+	tail = ft_substr(token->value, *index, ft_strlen(token->value) + 1);
 	free(token->value);
 	token->value = ft_strjoin(head, replaced);
 	token->value = ft_strjoin_free_s1(token->value, tail);
