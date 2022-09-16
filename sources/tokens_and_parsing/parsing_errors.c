@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_errors.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 21:36:13 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/14 08:42:10 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:30:23 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern int	glob_status;
+extern int	g_status;
 
 t_token	*open_quote_err(t_token *head);
 int		print_syntax_error(t_token **token, const char *msg);
@@ -21,7 +21,7 @@ int		error_handler(t_token **token, t_token **tmp);
 t_token	*open_quote_err(t_token *head)
 {
 	printf("minishell: error, unclosed quotes\n");
-	glob_status = ERR_SYNTAX;
+	g_status = ERR_SYNTAX;
 	free_all_token(head);
 	return (NULL);
 }
@@ -29,7 +29,7 @@ t_token	*open_quote_err(t_token *head)
 int	print_syntax_error(t_token **token, const char *msg)
 {
 	printf("minishell: %s", msg);
-	glob_status = ERR_SYNTAX;
+	g_status = ERR_SYNTAX;
 	free_all_token(*token);
 	*token = NULL;
 	return (ERROR);

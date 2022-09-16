@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   eof_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 14:58:35 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/05 14:40:32 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:27:32 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	glob_status;
+int	g_status;
 
 void	eof_exit(t_env *envp)
 {
 	write(1, "exit\n", 5);
 	free_all_env(envp);
-	exit(glob_status);
+	exit(g_status);
 }

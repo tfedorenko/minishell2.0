@@ -6,11 +6,13 @@
 /*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:22:51 by rkultaev          #+#    #+#             */
-
+/*   Updated: 2022/09/15 12:28:22 by tfedoren         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern int	glob_status;
+extern int	g_status;
 
 int	write_to_temp_file(char *heredoc_str)
 {
@@ -59,11 +61,6 @@ static void	pre_heredoc(t_node *node)
 	while (1)
 	{
 		readline_str = readline("> ");
-		// if (!readline_str)
-		// {
-		// 	free(heredoc_str);
-		// 	exit(EXIT_SUCCESS);
-		// }
 		if (ft_strcmp(readline_str, node->command[1]) == 0)
 		{
 			free(readline_str);
@@ -92,9 +89,9 @@ int	fetch_heredoc_fd(t_node *node)
 		heredoc_signal_function();
 		pre_heredoc(node);
 	}
-	waitpid(pid, &glob_status, 0);
+	waitpid(pid, &g_status, 0);
 	signals_function();
-	if (WEXITSTATUS(glob_status) == ERR_ETC)
+	if (WEXITSTATUS(g_status) == ERR_ETC)
 		return (ERROR);
 	return (fetch_heredoc_read_end());
 }

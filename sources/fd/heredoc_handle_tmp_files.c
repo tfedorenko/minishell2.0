@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_handle_tmp_files.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 16:08:17 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/11 20:40:25 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:26:49 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern int glob_status;
+extern int	g_status;
 
 t_list	*add_files(t_list *head, char *file_name)
 {

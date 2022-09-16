@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 11:18:57 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/13 20:06:23 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:19:14 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,12 @@ t_token	*ft_dellist(t_token *head, char *target)
 
 void	free_all_token(t_token *head)
 {
-	// t_token	*target;
 	t_token	*tmp;
 
 	if (!head)
 		return ;
-	// tmp = head;
 	while (head)
 	{
-		// target = tmp;
 		if (head->value)
 			free(head->value);
 		tmp = head->next;

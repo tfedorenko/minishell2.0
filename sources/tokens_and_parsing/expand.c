@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:35:01 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/14 22:33:13 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:29:29 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern int	glob_status;
+extern int	g_status;
 
 t_token	*expand(t_token *token, t_env *env);
 void	set_expanded_value(t_token *token, char *replaced, int start, \
@@ -84,7 +84,7 @@ void	set_expanded_value(t_token *token, char *replaced, int start, \
 
 	if (token->value[start] == '?')
 	{
-		replaced = ft_itoa(glob_status);
+		replaced = ft_itoa(g_status);
 		(*index) = start + 1;
 	}
 	if (!replaced)

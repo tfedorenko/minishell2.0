@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fd_delimiter_and_pipe.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:42:13 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/12 19:09:45 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:26:41 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern int	glob_status;
+extern int	g_status;
 
 int	set_delimiter_fd(t_node *head)
 {

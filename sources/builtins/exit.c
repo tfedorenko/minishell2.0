@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:37:41 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/06 17:00:55 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:27:48 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern int	glob_status;
+extern int	g_status;
 
 void	is_exit(char *num)
 {
@@ -39,15 +39,15 @@ void	my_exit(int single_command, t_node *node)
 	if (single_command)
 		printf("exit\n");
 	if (node->command[1] == NULL)
-		exit(glob_status);
+		exit(g_status);
 	is_exit(node->command[1]);
 	status_longlong = ft_atoi(node->command[1]);
-	glob_status = status_longlong % 256 + 256 * (status_longlong < 0);
+	g_status = status_longlong % 256 + 256 * (status_longlong < 0);
 	if (node->command[2] != NULL)
 	{
 		print_error2(ft_strdup("exit: too many arguments\n"), 1);
-		glob_status = 1;
+		g_status = 1;
 	}
 	else
-		exit(glob_status);
+		exit(g_status);
 }

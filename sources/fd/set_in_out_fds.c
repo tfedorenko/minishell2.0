@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   set_in_out_fds.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 16:43:30 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/13 16:31:18 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:27:04 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern int	glob_status;
+extern int	g_status;
 
 int	set_fd_input(t_node *head, t_node *file)
 {
@@ -23,13 +23,13 @@ int	set_fd_input(t_node *head, t_node *file)
 		{
 			printf("minishell: %s: No such file or directory\n",
 				file->command[1]);
-			glob_status = ERR_ETC;
+			g_status = ERR_ETC;
 			return (ERROR);
 		}
 	}
 	else
 		file->fd[IN] = fetch_heredoc_fd(file);
-	if (file->type == HEREDOC && (glob_status == ERR_ETC
+	if (file->type == HEREDOC && (g_status == ERR_ETC
 			|| file->fd[IN] == ERROR))
 		return (ERROR);
 	(void)head;

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 23:06:48 by tfedoren          #+#    #+#             */
-/*   Updated: 2022/09/14 22:26:44 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:28:15 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-extern int	glob_status;
+extern int	g_status;
 
 static void	fd_descriptor(t_node *node)
 {
@@ -32,7 +32,7 @@ pid_t	command(t_node *node)
 		exit_error("fork error", 1);
 	else if (pid == 0)
 	{
-		glob_status = 0;
+		g_status = 0;
 		dup2(node->fd[IN], 0);
 		dup2(node->fd[OUT], 1);
 		close_pipes(node);
@@ -40,7 +40,7 @@ pid_t	command(t_node *node)
 			builtin(MULTI_CMD, node);
 		else
 			launch_execve(node);
-		exit(glob_status);
+		exit(g_status);
 	}
 	else
 		fd_descriptor(node);
@@ -49,11 +49,11 @@ pid_t	command(t_node *node)
 
 void	define_status(int child)
 {
-	glob_status = WEXITSTATUS(child);
+	g_status = WEXITSTATUS(child);
 	if (WTERMSIG(child) == SIGINT)
-		glob_status = WTERMSIG(child) + 128;
+		g_status = WTERMSIG(child) + 128;
 	if (WTERMSIG(child) == SIGQUIT)
-		glob_status = WTERMSIG(child) + 128;
+		g_status = WTERMSIG(child) + 128;
 }
 
 void	wait_child(int nb_child, int pid)
@@ -83,7 +83,7 @@ void	execute(t_node *process)
 	if (is_single_command(process) == SUCCESS && is_builtin(process) == SUCCESS)
 	{
 		if (ft_strcmp(process->command[0], "exit"))
-			glob_status = 0;
+			g_status = 0;
 		builtin(SINGLE_CMD, process);
 	}
 	else

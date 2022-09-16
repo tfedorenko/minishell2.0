@@ -6,7 +6,7 @@
 /*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:59:20 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/09 17:54:38 by tfedoren         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:22:31 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,3 @@ void	unset(t_node *node)
 		node->env = unset_env(node->env, node->command[i]);
 	}
 }
-

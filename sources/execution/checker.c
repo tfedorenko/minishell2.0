@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:24:03 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/14 21:52:10 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:22:19 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ char	*set_command_path(char *command, char **paths)
 		free(tmp_cmd);
 		free(command_path_with_slash);
 	}
-	// free(tmp_cmd);
 	free(command_path_with_slash);
 	return (NULL);
 }

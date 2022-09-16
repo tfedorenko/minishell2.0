@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkultaev <rkultaev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: tfedoren <tfedoren@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 13:14:29 by rkultaev          #+#    #+#             */
-/*   Updated: 2022/09/14 15:52:28 by rkultaev         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:31:08 by tfedoren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	glob_status;
+int	g_status;
 
 void	minishell(t_env *envp)
 {
@@ -52,7 +52,7 @@ int	main(int argc, char **argv, char **env)
 	argc = 0;
 	argv = 0;
 	envp = env_init(&head, env);
-	glob_status = 0;
+	g_status = 0;
 	while (1)
 	{
 		signals_function();
